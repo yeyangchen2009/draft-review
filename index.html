@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>草稿审稿站 · 叶扬</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="叶扬的草稿审稿站，移动端优先" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    /* ========== 主题变量：默认暗色（GitHub Dark），亮色在 [data-theme="light"] ========== */
+    :root {
+      --bg: #0d1117;
+      --sidebar-bg: #161b22;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --link: #58a6ff;
+      --border: #30363d;
+      --code-bg: #161b22;
+      --inline-code-bg: rgba(110, 118, 129, 0.4);
+      --hover-bg: rgba(177, 186, 196, 0.12);
+      --active-bg: rgba(56, 139, 253, 0.15);
+      --quote-border: #58a6ff;
+      --btn-bg: #21262d;
+      --shadow: rgba(1, 4, 9, 0.6);
+    }
+
+    html[data-theme="light"] {
+      --bg: #ffffff;
+      --sidebar-bg: #f6f8fa;
+      --text: #1f2328;
+      --text-muted: #656d76;
+      --link: #1f6feb;
+      --border: #d0d7de;
+      --code-bg: #f6f8fa;
+      --inline-code-bg: rgba(175, 184, 193, 0.2);
+      --hover-bg: rgba(208, 215, 222, 0.5);
+      --active-bg: rgba(9, 105, 218, 0.12);
+      --quote-border: #1f6feb;
+      --btn-bg: #f6f8fa;
+      --shadow: rgba(31, 35, 40, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    /* ========== docsify 结构 ========== */
+    /* 宽屏：侧边栏固定 300px；body.close 时收起。
+       窄屏：侧边栏默认在屏外，汉堡按钮（body 去 .close）时滑入 */
+    .sidebar {
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 300px;
+      z-index: 1200;
+    }
+    .sidebar-toggle { display: none; }
+    .sidebar-toggle-button span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      margin: 3px 0;
+      border-radius: 1px;
+    }
+
+    @media screen and (min-width: 769px) {
+      body:not(.close) .content { margin-left: 300px; }
+      body.close .sidebar { transform: translateX(-300px); }
+      .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 1300;
+        background: var(--btn-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      body:not(.close) .sidebar-toggle { display: none; }
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar { transform: translateX(-300px); transition: transform 0.2s ease; }
+      body:not(.close) .sidebar { transform: translateX(0); }
+      .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1300;
+        background: var(--btn-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      /* 遮罩：侧边栏打开时点击空白收起 */
+      body:not(.close)::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(1, 4, 9, 0.5);
+        z-index: 1100;
+      }
+    }
+
+    .sidebar-toggle { background: var(--sidebar-bg); }
+    .sidebar-toggle-button { color: var(--text-muted); }
+
+    .app-name {
+      padding: 20px 24px 12px;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .app-name a { color: var(--text); text-decoration: none; }
+
+    .sidebar ul { list-style: none; padding: 0 8px 24px; }
+    .sidebar li { margin: 2px 0; }
+    .sidebar-nav li > a {
+      display: block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .sidebar-nav li > a:hover { background: var(--hover-bg); color: var(--text); }
+    .sidebar-nav li.active > a { background: var(--active-bg); color: var(--link); }
+
+    /* 搜索框 */
+    .search { padding: 0 16px 12px; position: sticky; top: 0; background: var(--sidebar-bg); z-index: 5; }
+    .search input {
+      width: 100%;
+      padding: 8px 10px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 0.9rem;
+      outline: none;
+    }
+    .search input:focus { border-color: var(--link); }
+    .search .results-panel { background: var(--sidebar-bg); font-size: 0.9rem; }
+    .search .matching-tag { color: var(--link); }
+
+    /* 正文区 */
+    .content { padding-top: 24px; }
+    .markdown-section { max-width: 820px; margin: 0 auto; padding: 0 24px 80px; color: var(--text); }
+
+    .markdown-section h1, .markdown-section h2, .markdown-section h3,
+    .markdown-section h4, .markdown-section h5 {
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 1.8em 0 0.7em;
+    }
+    .markdown-section h1 { font-size: 1.7rem; padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
+    .markdown-section h2 { font-size: 1.4rem; padding-bottom: 0.3em; border-bottom: 1px solid var(--border); }
+    .markdown-section h3 { font-size: 1.18rem; }
+    .markdown-section h4 { font-size: 1.05rem; }
+    .markdown-section a { color: var(--link); text-decoration: none; border-bottom: 1px solid transparent; }
+    .markdown-section a:hover { border-bottom-color: var(--link); }
+
+    .markdown-section p, .markdown-section li { color: var(--text); }
+    .markdown-section ul, .markdown-section ol { padding-left: 1.6em; }
+    .markdown-section li { margin: 0.3em 0; }
+
+    .markdown-section blockquote {
+      margin: 1em 0;
+      padding: 0.4em 1em;
+      border-left: 4px solid var(--quote-border);
+      color: var(--text-muted);
+      background: var(--code-bg);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .markdown-section hr { border: none; border-top: 1px solid var(--border); margin: 2em 0; }
+
+    /* 行内代码与代码块 */
+    .markdown-section code {
+      background: var(--inline-code-bg);
+      color: var(--text);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.88em;
+    }
+    .markdown-section pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    .markdown-section pre code { background: none; padding: 0; font-size: 0.88rem; line-height: 1.6; }
+
+    /* 表格 */
+    .markdown-section table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.2em 0;
+      font-size: 0.94rem;
+      display: block;
+      overflow-x: auto;
+    }
+    .markdown-section th, .markdown-section td {
+      border: 1px solid var(--border);
+      padding: 8px 13px;
+      text-align: left;
+      white-space: normal;
+    }
+    .markdown-section th { background: var(--code-bg); font-weight: 600; }
+    .markdown-section tr:nth-child(2n) { background: var(--code-bg); }
+
+    .markdown-section img { max-width: 100%; border-radius: 6px; }
+
+    /* mermaid 图 */
+    .mermaid-wrap { margin: 1.4em 0; text-align: center; }
+    .mermaid-holder svg { max-width: 100%; height: auto; }
+    .mermaid-error {
+      display: inline-block;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* 分页插件 */
+    .docsify-pagination-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+    }
+    .docsify-pagination-container a { text-decoration: none; }
+    .docsify-pagination-container .docsify-pagination-button__text { color: var(--text-muted); }
+    .docsify-pagination-container h4 { color: var(--link); margin: 4px 0; font-size: 1rem; }
+
+    /* ========== 主题切换按钮 ========== */
+    #theme-toggle {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--btn-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1500;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    #theme-toggle:hover { border-color: var(--link); }
+    #theme-toggle svg { width: 20px; height: 20px; fill: var(--text); }
+    #theme-toggle .icon-light { display: none; }
+    html[data-theme="light"] #theme-toggle .icon-dark { display: none; }
+    html[data-theme="light"] #theme-toggle .icon-light { display: block; }
+
+    /* ========== 移动端 ========== */
+    @media (max-width: 768px) {
+      .markdown-section { padding: 0 16px 60px; }
+      .content { padding-top: 12px; }
+      .markdown-section h1 { font-size: 1.45rem; }
+      .markdown-section h2 { font-size: 1.25rem; }
+      .markdown-section table { white-space: nowrap; }
+      .sidebar .search { padding-left: 54px; }
+      .docsify-pagination-container { padding: 20px 16px; }
+      #theme-toggle { top: 10px; right: 10px; width: 36px; height: 36px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <button id="theme-toggle" title="切换暗色 / 明亮" aria-label="切换暗色或明亮主题">
+    <!-- 当前暗色时显示月亮（点击切到亮色），亮色时显示太阳 -->
+    <svg class="icon-dark" viewBox="0 0 16 16">
+      <path d="M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z"/>
+    </svg>
+    <svg class="icon-light" viewBox="0 0 16 16">
+      <path d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z"/>
+    </svg>
+  </button>
+
+  <!-- mermaid 先于 docsify 加载，保证渲染时全局可用 -->
+  <script src="lib/mermaid.min.js"></script>
+
+  <script>
+    /* ================= 主题管理 ================= */
+    var THEME_KEY = 'review-theme';
+    function currentTheme() {
+      return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
+    }
+
+    // 窄屏初始收起侧边栏，不依赖 docsify 的自动判断
+    if (window.innerWidth <= 768) {
+      document.body.classList.add('close');
+    }
+    // 窄屏侧边栏打开时，点击遮罩区域（侧边栏外）收起
+    document.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768 && !document.body.classList.contains('close')) {
+        if (!e.target.closest('.sidebar') && !e.target.closest('.sidebar-toggle')) {
+          document.body.classList.add('close');
+        }
+      }
+    });
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem(THEME_KEY, theme);
+      rerenderAllMermaid(theme);
+    }
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
+    applyTheme(currentTheme());
+
+    /* ================= mermaid 渲染 ================= */
+    var mermaidSeq = 0;
+    var DARK_VARS = {
+      background: '#0d1117',
+      primaryColor: '#1f6feb',
+      primaryTextColor: '#ffffff',
+      primaryBorderColor: '#79c0ff',
+      secondaryColor: '#21262d',
+      tertiaryColor: '#30363d',
+      lineColor: '#8b949e',
+      textColor: '#e6edf3',
+      clusterBkg: '#161b22',
+      clusterBorder: '#58a6ff',
+      edgeLabelBackground: '#21262d',
+      fontSize: '15px'
+    };
+
+    // 稿子里内嵌的 %%{init}%% 一律剥掉，主题由站点统一决定
+    function stripInit(src) {
+      return src.replace(/%%\{[\s\S]*?\}%%\s*/g, '').trim();
+    }
+
+    function initMermaid(theme) {
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'loose',
+        theme: theme === 'light' ? 'default' : 'dark',
+        themeVariables: theme === 'light' ? undefined : DARK_VARS,
+        flowchart: { useMaxWidth: true },
+        fontFamily: '-apple-system, "PingFang SC", "Microsoft YaHei", sans-serif'
+      });
+    }
+
+    async function renderMermaidInto(holder, src, theme) {
+      initMermaid(theme);
+      try {
+        var id = 'mmd-' + (++mermaidSeq);
+        var result = await mermaid.render(id, src);
+        holder.innerHTML = result.svg;
+      } catch (e) {
+        holder.innerHTML = '<span class="mermaid-error">图表渲染失败：' +
+          String(e.message || e).replace(/</g, '&lt;') + '</span>';
+      }
+    }
+
+    function rerenderAllMermaid(theme) {
+      var wraps = document.querySelectorAll('.mermaid-wrap');
+      for (var i = 0; i < wraps.length; i++) {
+        var holder = wraps[i].querySelector('.mermaid-holder');
+        var store = wraps[i].querySelector('script[type="text/mermaid-src"]');
+        if (holder && store) renderMermaidInto(holder, store.textContent, theme);
+      }
+    }
+
+    /* ================= docsify 配置与 mermaid 插件 ================= */
+    window.$docsify = {
+      name: '草稿审稿',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      maxLevel: 4,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜索草稿',
+        noData: '找不到结果',
+        depth: 6
+      },
+      pagination: {
+        previousText: '上一篇',
+        nextText: '下一篇',
+        crossChapter: true,
+        crossChapterText: true
+      },
+      plugins: [
+        function (hook) {
+          hook.doneEach(function () {
+            // docsify v4 的 marked 输出 lang- 前缀，不同版本可能是 language-，用类名包含匹配
+            var candidates = document.querySelectorAll('pre > code');
+            var blocks = [];
+            for (var c = 0; c < candidates.length; c++) {
+              if (/(^|\s)(lang|language)-mermaid(\s|$)/.test(candidates[c].className)) {
+                blocks.push(candidates[c]);
+              }
+            }
+            if (!blocks.length) return;
+            blocks.forEach(function (codeEl) {
+              var pre = codeEl.closest('pre');
+              var src = stripInit(codeEl.textContent || '');
+
+              var wrap = document.createElement('div');
+              wrap.className = 'mermaid-wrap';
+              var holder = document.createElement('div');
+              holder.className = 'mermaid-holder';
+              var store = document.createElement('script');
+              store.type = 'text/mermaid-src';
+              store.textContent = src;
+              wrap.appendChild(holder);
+              wrap.appendChild(store);
+              pre.parentNode.replaceChild(wrap, pre);
+
+              renderMermaidInto(holder, src, currentTheme());
+            });
+          });
+        }
+      ]
+    };
+  </script>
+
+  <script src="lib/docsify@4.js"></script>
+  <script src="lib/search.min.js"></script>
+  <script src="lib/docsify-pagination.min.js"></script>
+  <script src="lib/zoom-image.min.js"></script>
+</body>
+
+</html>
