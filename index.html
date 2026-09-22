@@ -425,6 +425,10 @@
       },
       plugins: [
         function (hook) {
+          // docsify 不识别 YAML frontmatter，会把它当正文显示，解析前剥掉
+          hook.beforeEach(function (content) {
+            return content.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
+          });
           hook.doneEach(function () {
             // docsify v4 的 marked 输出 lang- 前缀，不同版本可能是 language-，用类名包含匹配
             var candidates = document.querySelectorAll('pre > code');
