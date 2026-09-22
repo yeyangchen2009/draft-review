@@ -85,8 +85,8 @@
       .sidebar-toggle {
         display: flex;
         position: fixed;
-        top: 12px;
-        left: 12px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        right: calc(16px + env(safe-area-inset-right));
         z-index: 1300;
         background: var(--btn-bg);
         border: 1px solid var(--border);
@@ -96,6 +96,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        box-shadow: 0 2px 8px var(--shadow);
       }
       body:not(.close) .sidebar-toggle { display: none; }
     }
@@ -106,17 +107,18 @@
       .sidebar-toggle {
         display: flex;
         position: fixed;
-        top: 10px;
-        left: 10px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        right: calc(16px + env(safe-area-inset-right));
         z-index: 1300;
         background: var(--btn-bg);
         border: 1px solid var(--border);
         border-radius: 8px;
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        box-shadow: 0 2px 8px var(--shadow);
       }
       /* 遮罩：侧边栏打开时点击空白收起 */
       body:not(.close)::after {
@@ -294,7 +296,6 @@
       .markdown-section h1 { font-size: 1.45rem; }
       .markdown-section h2 { font-size: 1.25rem; }
       .markdown-section table { white-space: nowrap; }
-      .sidebar .search { padding-left: 54px; }
       .docsify-pagination-container { padding: 20px 16px; }
       #theme-toggle { top: 10px; right: 10px; width: 36px; height: 36px; }
     }
