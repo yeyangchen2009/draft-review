@@ -63,8 +63,31 @@
 
 ## 八、文件与同步
 
-- 草稿文件名：`YYYY年M月D日-标题关键词.md`，放在 `drafts/`。
+- 草稿文件名：`YYYY年M月D日-标题关键词.md`。
+- **系列分组**：长篇系列在草稿源目录（`vault/07.发布文案/2026年/草稿/`）下建一级子目录，脚本自动分组、该组在 sidebar 排前。已登记：`中系/`＝中国佛教史。开新长系列时在 `sync_review_site.py` 的 `GROUP_TITLES`／`GROUP_ORDER` 里登记；顶层散稿自动归入默认组。
 - 写完保存后执行 `python F:\Data\AI-obsidian\scripts\sync_review_site.py` 同步到手机；只想本地预览时加 `--no-push`。
+- 审稿站是 **public 仓库**，草稿即公开的半成品（docsify 空壳渲染，基本不被搜索引擎收录）。介意提前曝光的稿只加 `--no-push` 本地预览，不推。
+
+## 九、两阶段工作流（中系及所有重头系列）
+
+一篇文章只在 Gmeek 构建一次——写作迭代全部留在审稿站，不占用 Actions 流水线。
+
+**阶段一 · 审稿站快循环（不碰 Gmeek）**
+
+1. 在草稿源目录（系列放子目录）写稿，frontmatter 从简；
+2. `sync_review_site.py` 推送，手机/浏览器即时审稿，改一版推一次，秒级生效；
+3. fork 独立审直接在 md 阶段完成（0 P0 才放行），所有结构性修改在这一阶段做完；
+4. 人称、mermaid init、脚手架去痕按本文件各节在 md 里处理干净。
+
+**阶段二 · Gmeek 一次性发布（每篇只构建这一次）**
+
+1. 搬稿转换：删 frontmatter 整块；正文第一行仍不许是 H1；配图路径改成 `/screenshots/xxx.png`；内链用 `/post/N.html`；
+2. 配图卡片、mermaid 实拍按各系列既有规矩出图；有新 static 文件先全量重建；
+3. `gh issue create`（标签按系列）→ 等 Generate/Deploy 双绿；
+4. **`gh api markdown` 整稿终验不能省**：docsify 用 marked 渲染，GFM 中文粗体坑在审稿站看不出来，字面 `**` 必须为 0、strong 开闭数相等；
+5. CDP 线上验收（注入 primer、mermaid 轮询）→ 回系列总目打勾（中系回 #72）。
+
+**发布后草稿的归宿**：vault 源稿保留，`status` 改「已发布」、顶部加博客链接，审稿站即存档。此后修订一律改 Gmeek issue，不许回头改审稿站稿，避免两份正文分叉。
 
 ---
 
