@@ -68,6 +68,7 @@
       left: 0;
       width: 300px;
       z-index: 1200;
+      transition: transform 0.2s ease;
     }
     .sidebar-toggle { display: none; }
     .sidebar-toggle-button span {
@@ -82,6 +83,7 @@
     @media screen and (min-width: 769px) {
       body:not(.close) .content { margin-left: 300px; }
       body.close .sidebar { transform: translateX(-300px); }
+      .content { transition: margin-left 0.2s ease; }
       .sidebar-toggle {
         display: flex;
         position: fixed;
@@ -98,7 +100,7 @@
         cursor: pointer;
         box-shadow: 0 2px 8px var(--shadow);
       }
-      body:not(.close) .sidebar-toggle { display: none; }
+      /* PC 端按钮始终显示，随时可收起或召唤目录 */
     }
 
     @media screen and (max-width: 768px) {
