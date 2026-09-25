@@ -57,7 +57,7 @@
 
     /* ========== docsify 结构 ========== */
     /* 宽屏：侧边栏固定 300px；body.close 时收起。
-       窄屏：侧边栏默认在屏外，body 去 .close 时滑入 */
+       窄屏：侧边栏默认在屏外，汉堡按钮（body 去 .close）时滑入 */
     .sidebar {
       background: var(--sidebar-bg);
       border-right: 1px solid var(--border);
@@ -68,52 +68,58 @@
       left: 0;
       width: 300px;
       z-index: 1200;
-      transition: transform 0.2s ease;
     }
-    /* docsify 自带的汉堡按钮不用，隐藏 */
-    .sidebar-toggle { display: none !important; }
-
-    /* 左缘中置的箭头开关：展开时贴侧边栏右缘（左箭头，关回去），
-       收起时贴屏幕左缘（右箭头，召唤出来） */
-    #sidebar-switch {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 300px;
-      z-index: 1400;
-      width: 22px;
-      height: 60px;
-      background: var(--sidebar-bg);
-      border: 1px solid var(--border);
-      border-left: none;
-      border-radius: 0 8px 8px 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 2px 0 8px var(--shadow);
-      padding: 0;
-      transition: left 0.2s ease, background 0.2s ease;
+    .sidebar-toggle { display: none; }
+    .sidebar-toggle-button span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      margin: 3px 0;
+      border-radius: 1px;
     }
-    #sidebar-switch:hover { border-color: var(--link); }
-    #sidebar-switch svg { width: 14px; height: 14px; fill: var(--text-muted); }
-    #sidebar-switch:hover svg { fill: var(--link); }
-    /* 展开态：左箭头；收起态：右箭头 */
-    #sidebar-switch .ic-left { display: block; }
-    #sidebar-switch .ic-right { display: none; }
-    body.close #sidebar-switch { left: 0; }
-    body.close #sidebar-switch .ic-left { display: none; }
-    body.close #sidebar-switch .ic-right { display: block; }
 
     @media screen and (min-width: 769px) {
       body:not(.close) .content { margin-left: 300px; }
       body.close .sidebar { transform: translateX(-300px); }
-      .content { transition: margin-left 0.2s ease; }
+      .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        right: calc(16px + env(safe-area-inset-right));
+        z-index: 1300;
+        background: var(--btn-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px var(--shadow);
+      }
+      body:not(.close) .sidebar-toggle { display: none; }
     }
 
     @media screen and (max-width: 768px) {
-      .sidebar { transform: translateX(-300px); }
+      .sidebar { transform: translateX(-300px); transition: transform 0.2s ease; }
       body:not(.close) .sidebar { transform: translateX(0); }
+      .sidebar-toggle {
+        display: flex;
+        position: fixed;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        right: calc(16px + env(safe-area-inset-right));
+        z-index: 1300;
+        background: var(--btn-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px var(--shadow);
+      }
       /* 遮罩：侧边栏打开时点击空白收起 */
       body:not(.close)::after {
         content: "";
@@ -123,6 +129,9 @@
         z-index: 1100;
       }
     }
+
+    .sidebar-toggle { background: var(--sidebar-bg); }
+    .sidebar-toggle-button { color: var(--text-muted); }
 
     .app-name {
       padding: 20px 24px 12px;
@@ -296,16 +305,6 @@
 <body>
   <div id="app"></div>
 
-  <!-- 侧边栏箭头开关：展开态左箭头收起，收起态右箭头召唤 -->
-  <button id="sidebar-switch" title="收起或展开目录" aria-label="收起或展开目录">
-    <svg class="ic-left" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M9.78 12.78a.75.75 0 01-1.06 0L4.47 8.53a.75.75 0 010-1.06l4.25-4.25a.751.751 0 011.042.019l.019.019a.75.75 0 010 1.06L6.061 8l3.719 3.72a.75.75 0 010 1.06z"/>
-    </svg>
-    <svg class="ic-right" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.751.751 0 01-1.042-.019l-.019-.019a.75.75 0 010-1.06L9.939 8 6.22 4.28a.75.75 0 010-1.06z"/>
-    </svg>
-  </button>
-
   <button id="theme-toggle" title="切换暗色 / 明亮" aria-label="切换暗色或明亮主题">
     <!-- 当前暗色时显示月亮（点击切到亮色），亮色时显示太阳 -->
     <svg class="icon-dark" viewBox="0 0 16 16">
@@ -326,23 +325,14 @@
       return localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark';
     }
 
-    // 窄屏初始收起侧边栏；宽屏记住上次收起状态
-    var SIDEBAR_KEY = 'review-sidebar';
-    if (window.innerWidth <= 768 || localStorage.getItem(SIDEBAR_KEY) === 'closed') {
+    // 窄屏初始收起侧边栏，不依赖 docsify 的自动判断
+    if (window.innerWidth <= 768) {
       document.body.classList.add('close');
     }
-    document.getElementById('sidebar-switch').addEventListener('click', function () {
-      document.body.classList.toggle('close');
-      // 宽屏状态持久化，窄屏始终默认收起
-      if (window.innerWidth > 768) {
-        localStorage.setItem(SIDEBAR_KEY,
-          document.body.classList.contains('close') ? 'closed' : 'open');
-      }
-    });
     // 窄屏侧边栏打开时，点击遮罩区域（侧边栏外）收起
     document.addEventListener('click', function (e) {
       if (window.innerWidth <= 768 && !document.body.classList.contains('close')) {
-        if (!e.target.closest('.sidebar') && !e.target.closest('#sidebar-switch')) {
+        if (!e.target.closest('.sidebar') && !e.target.closest('.sidebar-toggle')) {
           document.body.classList.add('close');
         }
       }
