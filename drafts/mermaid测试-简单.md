@@ -1,3 +1,7 @@
+---
+date: 2026-09-28
+---
+
 # Mermaid 渲染测试 A：最简单的图（无 init 指令）
 
 ```mermaid
