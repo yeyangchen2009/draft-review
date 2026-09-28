@@ -79,13 +79,20 @@
 3. fork 独立审直接在 md 阶段完成（0 P0 才放行），所有结构性修改在这一阶段做完；
 4. 人称、mermaid init、脚手架去痕按本文件各节在 md 里处理干净。
 
-**阶段二 · Gmeek 一次性发布（每篇只构建这一次）**
+**阶段二 · Gmeek 一次性发布（每篇构建 1 次，2026-09-28 起用新 SOP）**
 
-1. 搬稿转换：删 frontmatter 整块；正文第一行仍不许是 H1；配图路径改成 `/screenshots/xxx.png`；内链用 `/post/N.html`；
-2. 配图卡片、mermaid 实拍按各系列既有规矩出图；有新 static 文件先全量重建；
-3. `gh issue create`（标签按系列）→ 等 Generate/Deploy 双绿；
-4. **`gh api markdown` 整稿终验不能省**：docsify 用 marked 渲染，GFM 中文粗体坑在审稿站看不出来，字面 `**` 必须为 0、strong 开闭数相等；
-5. CDP 线上验收（注入 primer、mermaid 轮询）→ 回系列总目打勾（中系回 #72）。
+**首选：一键脚本 `python tools/publish-post.py <vault源稿.md> --series zhong`**，
+它自动按下列顺序执行并把每步时间戳写日志（`--log-file` 可落盘）：
+
+1. 剥 frontmatter；正文第一行仍不许是 H1；配图路径 `/screenshots/xxx.png`、内链 `/post/N.html` 在定稿时已就位；
+2. **pre-flight**：`gh api /markdown` 整稿终验（docsify 用 marked，GFM 中文粗体坑在审稿站看不出来）——字面 `**` 必须为 0、strong 开闭数相等；裸他精确扫描必须 0；
+3. **配图**卡片、mermaid 按各系列规矩定稿后出图；新图直接 git push 到 main——**不再做全量重建**：Gmeek.yml 的 `actions/checkout@v4` 无固定 ref，issue 构建必 checkout 含图的最新 main，图片随文章一次部署。脚本用 `gh api contents` 逐张确认图已在 main，未入库直接拦截；
+4. `gh issue create`（标签按系列）→ **同一时机立即调门户 hook（`tools/portal_hooks/<series>.py`）编辑门户 issue 打勾**，门户构建与文章构建并行（不再"最后再等一次构建"）；
+5. **限时轮询等双绿，禁用 `gh run watch`**：它会静默挂死（中15 实测空等 30 分）。脚本每 20 秒一次短 `gh run list`（只认发布时间窗之后的新 run），超时（默认 600s）即报错让人核查；
+6. curl 验证文章页与图片全 200；
+7. CDP 线上验收改用**多景模式**：`node tools/cdp-shot.js <url> - <w> <h> --shots <spec.json> --preroll ...`，一个浏览器会话连拍首屏/卡片/各图/术语表（中15 实测 27 秒 5 景，旧并行冷启动约 15 分）。
+
+**通用纪律**：①任何外部长等待必须包超时、输出可见，不许 `>/dev/null 2>&1` 后干等；②脚本只负责发布与双绿，CDP 验收单独跑；③门户 hook 必须幂等、纯字符串处理，不直接联网。
 
 **发布后草稿的归宿**：vault 源稿保留，`status` 改「已发布」、顶部加博客链接，审稿站即存档。此后修订一律改 Gmeek issue，不许回头改审稿站稿，避免两份正文分叉。
 
