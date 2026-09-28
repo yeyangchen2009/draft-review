@@ -18,3 +18,14 @@ flowchart TD
     B -->|否| D[结束]
     C --> D
 ```
+
+## 测试 C：init 指令放在图的最后
+
+```mermaid
+flowchart TD
+    A[开始] --> B{判断}
+    B -->|是| C[执行]
+    B -->|否| D[结束]
+    C --> D
+%%{init: {'theme':'dark','themeVariables':{'primaryColor':'#1f6feb','primaryTextColor':'#ffffff'}}}%%
+```
