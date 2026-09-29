@@ -317,9 +317,6 @@
     </svg>
   </button>
 
-  <!-- mermaid 先于 docsify 加载，保证渲染时全局可用 -->
-  <script src="lib/mermaid.min.js"></script>
-
   <script>
     /* ================= 主题管理 ================= */
     var THEME_KEY = 'review-theme';
@@ -394,7 +391,24 @@
       }
     }
 
+    // mermaid（3.3MB）按需动态加载：自托管大文件线上首次下载约需半分钟，
+    // 绝不能让它阻塞 docsify 启动。只有页面真含 mermaid 代码块时才加载一次。
+    var mermaidLoading = null;
+    function ensureMermaid() {
+      if (window.mermaid) return Promise.resolve(window.mermaid);
+      if (mermaidLoading) return mermaidLoading;
+      mermaidLoading = new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = 'lib/mermaid.min.js';
+        s.onload = function () { resolve(window.mermaid); };
+        s.onerror = function () { mermaidLoading = null; reject(new Error('网络请求失败')); };
+        document.head.appendChild(s);
+      });
+      return mermaidLoading;
+    }
+
     function rerenderAllMermaid(theme) {
+      if (!window.mermaid) return; // 图表库尚未加载；加载完成时的 pending 渲染会直接取当前主题
       var wraps = document.querySelectorAll('.mermaid-wrap');
       for (var i = 0; i < wraps.length; i++) {
         var holder = wraps[i].querySelector('.mermaid-holder');
@@ -442,6 +456,7 @@
               }
             }
             if (!blocks.length) return;
+            var pendingCharts = [];
             blocks.forEach(function (codeEl) {
               var pre = codeEl.closest('pre');
               var src = stripInit(codeEl.textContent || '');
@@ -450,6 +465,7 @@
               wrap.className = 'mermaid-wrap';
               var holder = document.createElement('div');
               holder.className = 'mermaid-holder';
+              holder.innerHTML = '<span class="mermaid-error">图表库按需加载中（首次约需半分钟），正文可先读……</span>';
               var store = document.createElement('script');
               store.type = 'text/mermaid-src';
               store.textContent = src;
@@ -457,7 +473,18 @@
               wrap.appendChild(store);
               pre.parentNode.replaceChild(wrap, pre);
 
-              renderMermaidInto(holder, src, currentTheme());
+              pendingCharts.push({ holder: holder, src: src });
+            });
+            // 文字内容此刻已全部可读；mermaid 在后台加载，完成后逐图渲染
+            ensureMermaid().then(function () {
+              pendingCharts.forEach(function (p) {
+                renderMermaidInto(p.holder, p.src, currentTheme());
+              });
+            }).catch(function (e) {
+              pendingCharts.forEach(function (p) {
+                p.holder.innerHTML = '<span class="mermaid-error">图表库加载失败：' +
+                  String(e.message || e).replace(/</g, '&lt;') + '</span>';
+              });
             });
           });
         }
