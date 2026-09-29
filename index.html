@@ -400,7 +400,10 @@
       mermaidLoading = new Promise(function (resolve, reject) {
         var s = document.createElement('script');
         s.src = 'lib/mermaid.min.js';
-        s.onload = function () { resolve(window.mermaid); };
+        s.onload = function () {
+          if (window.mermaid) resolve(window.mermaid);
+          else { mermaidLoading = null; reject(new Error('图表库加载异常')); }
+        };
         s.onerror = function () { mermaidLoading = null; reject(new Error('网络请求失败')); };
         document.head.appendChild(s);
       });
