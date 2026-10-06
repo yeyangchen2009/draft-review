@@ -804,3 +804,79 @@
 - **脚本固化**：tools/cj-web-tts.js 重写——启动直达 creation-audio 页；默认 UI 模式（填稿＋点试听＋抓 audio.src），`--api` 模式（XHR 带 localStorage.token，detect→create→state 轮询）；网络日志不记请求头，JWT 不读不打不存；node --check 通过。浏览器 profile 残留进程会致秒退（本次清掉 15 个孤儿 Edge 后恢复），报错信息已写明。
 - 挂钟：20:40～23:09 墙钟约 **2 小时 29 分**，其中两次登录等待窗口超时（5 分＋10 分）及用户离场占大头；排障/抓契约/提交下载/ASR 复核/脚本固化的有效工作 **约 25 分钟**。
 - **v2 波惹修正（同日 23:36）**：用户发现 4 处「般若」被念 bān ruò（班弱），拍板沿心经/素版口径改「**波惹**」并重合成（不截字，因 4 处且素版语速对不上）。源稿 4 处全改（道行×2／大品／放光经）。用固化后的 cj-web-tts.js UI 模式**全自动 46 秒**出 Temp/zhushixing-wang-yeyang-v2.wav（284.67s／13.7MB，登录态仍在、0 豆）。faster-whisper 复核四处转写「剥热／波热／波惹」，声母皆 b- r-、无 bān 鼻音尾与 ruò 韵尾，第4处 pypinyin 明确 bo re，**读音全部正确**；外船（wài chuán）保持。发音映射再记：波惹→般若（字幕正字）。
+
+## 朱士行（王利杰风格版）HyperFrame 全片渲染（2026-10-05 凌晨）
+
+- 用户拍板：多场景纯 CSS/SVG，弃暗色改用「**敦煌帛书·暖绢**」亮色主题；用户睡觉，全自动一路渲染成片。计划文件 jiggly-doodling-kitten.md。
+- **管线（全本地，音频 284.665s v2）**：faster-whisper base/int8 转录 196 段 → 正字稿 1291 字（波惹→般若 4 处、外船→外传 1 处）→ Needleman-Wunsch 对齐（99% 命中、165 cue）→ gen-zsx-wang.py 生成 **17 场景** index.html → check 五段门控 → render。
+- **配色与对比度**：绢底 #f5ecd4／卡片 #fbf5e6／墨字 #4d3a28／朱砂 #c0392b；金色首稿 #c08a2e 在绢底仅 **2.58:1** 不达 AA，自写 WCAG 脚本比选后全局改 **#a9741d**（3.43/3.71:1），终检 Contrast 66/66 AA。
+- **捕获性能**：全片零 filter:blur（残卷用 □ 占位＋.dim 浅色），渲染日志 recommendScreenshot:false，走单 worker drawElement streaming/hardware gpu。
+- **content_overlap 修复**：相邻叙事文字占同位（map-notes vs 于阗地名、火熄 vs 灵验另说）→ 前元素先 autoAlpha:0 退场、后元素延迟进入。
+- **★walker 重大缺陷与修复（抽帧抓到）**：`<g id="walker" transform="translate(1560,520)">` 被 GSAP 解析为内部 x/y=1560/520，时间轴里 `tl.set('#walker',{x:0,y:0})` 实为**瞬移到坐标原点**，之后 x:-280…-1200 全为负坐标——行者 162.6s 后飞出左画外（素版 gen-zsx.py 同病，当年验收漏检）。修复：外层 `<g transform="translate(1560,520)">` 承基点，内层 #walker 从 (0,0) 做相对动画；实心圆改朱砂 #c0392b＋金色外环（与米色空心节点区分）。重渲后 t162.5–174.5 逐帧确认行者沿点亮路线洛阳→关中→河西→阳关→大漠→于阗完全同步。
+- **成片**：`zhushixing-wang-video/renders/zhushixing-wang-video_2026-10-05_02-10-02.mp4`，1920×1080 30fps h264，28.1 MB，时长 284.667s。两版渲染：首版 12m37.2（capture 11m40.6）→ 废；终版 11m59.5（capture 11m2.5、assemble 27.6s）。
+- 验收：ffprobe 时长吻合；新旧 MP4 共抽 20+ 帧 Read 目验——亮底帛书全片统一、字幕皆为正字（般若/外传，无波惹/外船）、无黑帧、行者同步。
+- 挂钟：有文件锚点段 01:21（正字稿）～02:22（终版）约 **61 分钟**（两版渲染占 24.6 分钟）；含生成器编码的全程（计划批准约 00:00）约 **2 小时 20 分钟**。
+
+## 宏观阿尔法封面调研＋HTML 复刻（2026-10-05 上午）
+
+- 用户诉求：以宏观阿尔法视角调研其视频封面设计规律，并用 HTML 实际写一张（服务于刚成片的朱士行王版视频）。
+- **调研手段**：B 站空间接口（wbi 签名＋buvid）仍 412；Python urllib 请求搜索接口被 412（TLS/JA3 指纹被风控识别）而 curl code=0——全程改 curl 调公开视频搜索接口（4 关键词、间隔 3 秒），取得 **14 张真实封面**落盘 Temp/macro-covers/ 并全部 Read 目验。
+- **归纳设计公式（14 张高度模板化）**：①16:9；②米白宣纸底（细微纸纹＋做旧晕染）；③黑色**毛笔书法大字**两行、金句式断言标题（主流 12/14；科学题材 2 张用粗黑体＋蓝灰方格坐标纸底）；④铅笔素描/钢笔淡彩主视觉物件；⑤**工程制图语言**辅助（金色细线十字准星/刻度/虚线/圆弧/箭头/小圆点）；⑥少量低饱和粉彩点缀，整体克制；⑦全插画、无人脸照片。
+- **复刻实现**：Temp/macro-cover/cover.html（1920×1080）——SVG feTurbulence 纸纹＋feDisplacementMap 给标题做墨洇、印章做斑驳；马善政体（Ma Shan Zheng，OFL，jsDelivr 下载本地引用，本机无毛笔字体）；手绘 SVG 老僧拄杖西行背影（光头/僧袍/包袱露卷轴轴头/禅杖，排线素描）＋落日＋远近沙丘＋小驼队＋一串脚印；金色制图层＝四角准星/大 construction 圆弧/标尺/虚线箭头。
+- **v1 三处缺陷→v2 修复**：①纸纹长曲线漏设 fill:none，默认黑填＝横贯全屏三条黑带（SVG path 默认 fill 黑色的老坑）；②标题字号过大折行（108/268px→86/200px＋white-space:nowrap）致与印章打架；③老僧斗笠/卷轴位置错乱如头顶悬浮环——删斗笠改背圆包袱，整体 1.1 倍基点 1500,300，脚印延伸到脚边。
+- **交付**：cover-final.png（1920×1080，B 站直接可用，封面最低 1146×717）＋cover-final-2x.png（3840×2160，8.1MB）＋cover.html 源文件/本地字体。
+- 挂钟：08:00（调研起）～08:33 约 **33 分钟**（curl 取图＋目验 14 张约 20 分；编写/两版渲染/验收约 13 分）。
+
+### 换字体：马善政 → 霞鹜文楷 Bold（同日 09:00–09:27）
+
+- 用户反馈马善政体偏斑驳、不够圆润。候选调研：Klee One SemiBold（google/fonts 直取，仅缺简体「经」）、Hannari（Google 仓库版仅假名、汉字全缺，淘汰）、演示秋鸿楷（仓库已 404）、庆科黄油体、霞鹜文楷 Bold。
+- 霞鹜文楷获取：github 直连 clone/releases 均不通（git 协议被阻、ghfast 镜像超时）；改走 **npmmirror 下 lxgw-wenkai-webfont 1.7.0 tgz**（29.5MB，含 97 个 woff2  unicode-range 分包＋CSS），本地 @font-face 全包引用、浏览器按需取分片。
+- 用户目验 font-compare.png（四款同句对比）后拍板 **B 霞鹜文楷 Bold**：圆润饱满、简体全覆盖；同时去掉标题的 feDisplacementMap 墨洇滤镜（圆润字不再需要、反显斑驳）；印章保留马善政（斑驳正合印章质感）。
+- 重出 cover-final.png／cover-final-2x.png。本轮约 **27 分钟**（字体渠道排查占大头）。
+
+### 字体安装＋封面进首帧（同日 09:50–10:05）
+
+- **字体安装（用户级，无需管理员）**：复制 TTF 到 %LOCALAPPDATA%\Microsoft\Windows\Fonts 并 reg add HKCU 注册。共装 4 款：马善政体、Klee One SemiBold、站酷庆科黄油体、霞鹜文楷 Bold。霞鹜文楷无现成完整 TTF（GitHub 不通），用 **fontTools Merger 把 97 个 woff2 unicode-range 分片合并为 7.0MB 完整 TTF**（176 秒）。Hannari 仅假名不装。
+- **封面进首帧**：ffmpeg 以 cover-final.png 生成 2.0 秒静帧片头（静音 AAC LC/48k/stereo，参数对齐正片），concat demuxer **-c copy 无损拼接**。成片 zhushixing-wang-video/renders/zhushixing-wang-video-cover-2026-10-05.mp4，1920×1080，286.69 秒，29.6MB。抽帧确认：第 0 帧＝封面、2.1 秒处正片淡入衔接自然。
+- 本轮约 **15 分钟**（TTF 合并 3 分钟占大头）。
+
+### biliup 分P发布（同日 10:15–10:21）
+
+- list 定位上一篇：BV1xxHz65E6n「西行取经第一人：法号八戒的朱士行，比玄奘早了370年」（attribute=0 公开，原 P1 素版 187s）。
+- append --vid 追加成片 zhushixing-wang-video-cover-2026-10-05.mp4（29.6MB）：上传 bda2 线路 **6.87s／4.31MB/s**，接口 code:0 稿件修改成功；约 90s 转码后公开 API 确认线上 2P（P2 287s/1920×1080）。
+- **坑**：append 的 --title 不生效，P2 名显示为源文件名；biliup 无编辑分 P 命令，需用户在创作者中心网页手动改名。
+- 本轮约 **6 分钟**。
+
+## 猪八戒篇 HyperFrame 全片《考古工作台》（2026-10-05 晚）
+
+- 用户诉求链：蝉镜试听音频审听通过 → 问 HyperFrames 怎么规划 HTML → 在三主题中拍板「**考古工作台**」→「好开干」全自动制作 → 渲染前按约抽帧送审、用户回「渲染成片」。
+- **音频**：`Temp/video-scripts/01-猪八戒-yeyang.wav`，225.01s／24kHz，叶扬克隆音色只走试听 0 豆；发音稿含 5 处骗读替换（得少掉/得诚实/于阗/猪将/倒像）。
+- **管线（全本地）**：faster-whisper base/int8 **word_timestamps** 转录（11 段）→ 正字稿 `zbj-src.txt` 1020 字（5 处骗读反向还原，强制命中否则报错）→ Needleman-Wunsch（字形3/拼音2/声韵母2/韵母1/-2/gap-1）对齐得 **105 cue**。
+- **★whisper 整段漏识别（核心故障）**：141.30–150.68 共 9.4s／39 字在长 segment 中整段漏转，时间戳被前字「儿」吞掉（非静音 mean −19.6dB）。诊断：grep 连续 GAP → volumedetect 排除静音 → 切片段 `condition_on_previous_text=False + vad_filter` 独立转录 → patch-cues.py 拼音宽松校验（容忍 ASR 点/核误写）后替换 39 字时间戳并重建 cue，修补段 141.30–150.58 无挤压。
+- **15 场景**（`Temp/gen-zbj.py`，边界全锚定 cue）：S1 古书拿掉猪八戒（朱砂虚线轮廓）→S2 四毛病卡→S3 拍桌断言→S4 代码考古拆字＋**git 主干拉出**→S5 八戒＝八关斋戒八条逐条点亮→S6 朱砂「戒」印盖章→S7 朱士行＋**丝路 SVG**（洛阳→于阗）→S8 趣称朱八戒＋**民间附会画虚线分支**→S9 元杂剧时间轴＋御车将军卷轴→S10 **七头金色猪拉车 SVG**→S11 管车驾车本身是猪→S12 传播链→S13 ★**大型 merge 四分支汇入**→S14 commit 接力＋开源之喻→S15 抛问孙悟空神猴＋道别。
+- **母题三处呼应**：S4 git 主干 → S8 民间附会特意**赭虚线** → S13 四分支（蓝戒律／金密教／紫杂剧／赭虚线民间附会）汇入墨绿「猪八戒」节点为全片高潮。
+- **门控**：check 五段 0 error、Contrast **85/85 AA**。一次 content_overlap 修复（丝路原位置过低，「洛阳」被字幕条遮且与 zs-age 重叠 → 整张丝路图上移 120px、收紧上下文字）。
+- **抽帧目验抓到挽具缺陷**：七金猪首版仅最靠近车的一头有缰绳 → 改为横轭杠搭七猪肩背连成一体、一根车辕连车。
+- **成片**：`zbj-video/zbj-yeyang.mp4`，1920×1080 30fps h264/AAC，**23.3 MB**，ffprobe 时长 225.033s 吻合音频。单版一次渲染通过（无废片）：净 **12m5s**（capture 11m3s 走单 worker drawElement streaming/hardware gpu、assemble 24.8s、audio 29.5s）。
+- 验收：MP4 抽 15 镜（每镜一帧）＋merge／道别高清帧 Read 目验——考古工作台配色全片统一、字幕皆正字（八关斋戒/于阗/高僧传/朱士行/摩利支天，无骗读字）、丝路行者同步、无黑帧乱码。
+- 挂钟（文件 mtime 锚点）：word raw 19:41 → cues 19:54 → gen-zbj 20:17（生成器编码约 23 分）→ 成片 20:45，**约 64 分钟**（含门控/抽帧、等用户审批间隙、渲染 12 分）。
+
+### 猪八戒封面（同款宏观阿尔法公式）＋进首帧（同日 22:0X–22:18）
+
+- 用户诉求：「按照我们之前的封面加到视频的第一帧」。核查发现「之前的封面」cover-final.png 是朱士行专属（大字「不是玄奘」），与本期内容不符；AskUserQuestion 拍板「**新做猪八戒同款封面**」，沿用宏观阿尔法公式（宣纸底＋霞鹜文楷大字＋铅笔素描＋金色制图层＋马善政红印）。
+- **实现**：Temp/macro-cover/zbj-cover.html（1920×1080，复用同目录本地字体）——大标题「一身毛病的猪八戒，／不是编的。」（84/200px）；主视觉＝憨笑猪头（帽箍红珠/笑眼弯月/大拱嘴双鼻孔/腮红/露肚皮交领）＋右肩九齿钉耙；金色 construction 圆弧/准星/标尺；「八戒」红印、FIELD NOTE No.01 tag。
+- **三版造型迭代（皆自查截图发现）**：①首版耳朵过小、缩在头顶像两个小环 → ②改两侧张开下垂大垂叶（fill #eccca2）、帽型简化为帽箍避免与耳打架 → ③耳更宽、耳尖圆钝下垂，耳内两道平行长弧（远看像同心圆）改一条短耳窝弧＋几笔触，去同心观感，定稿。
+- **进首帧**：ffmpeg 以 zbj-cover-final.png 生成 2.0 秒静帧片头（静音 AAC LC/48k/stereo、h264 High/yuv420p/30fps，crf18 保铅笔细线，ffprobe 片头精确 2.000000s），concat demuxer **-c copy 无损拼接**＋faststart。成片 `zbj-video/zbj-yeyang-cover.mp4`，1920×1080，**227.05s（6811 帧），24.9MB**。
+- 验收：抽 0s（封面）／2.05s（S1 hook 正淡入、字幕逐字点亮，无黑帧花帧）／3.0s（《西游记》猪八戒主标题）三帧 Read——封面与正片同宣纸米底、2s 处色彩过渡自然，衔接干净。拼接点仅 1 条 Non-monotonic DTS 修正（AAC priming，容器时长差 21ms，观感无影响）。
+- 耗时：HTML 源经三次编辑、首建 mtime 被覆盖起点不可考；可见锚点终版截图 22:16 → head 22:17 → 拼接成片 22:17:44，**封面制作＋拼接约 15 分钟**（三版造型迭代占大头，ffmpeg 秒级）。
+
+## 视频管线深模块重构（2026-10-05 晚–10-06，分支 refactor/video-pipeline）
+
+- **背景三问题**：五片成片已出，但①流程反——封面渲染完才做；②目录散乱（成片/音频/生成器命名布局各自为政，源文件全在 gitignored 的 Temp/）；③19 个脚本约 3868 行、8 大块逐字重复。
+- **目标结构**：`videos/` 下公共深模块 `videopipe/`（13 模块：config/page/theme/scene/subtitle/cover/audioio/whisper_asr/align/cues/concat/verify＋包入口，接口小内部厚）；五项目统一到 `projects/<片>/`（make_video/make_cover/src/cues/oneoffs 入库；index.html/media/build/renders/snapshots 忽略）；共享 `assets/`（马善政 ttf＋霞鹜文楷 bold 分片入库，local-fonts 忽略）；新流程固化为①封面②TTS③whisper④align/cues⑤make_video⑥check/snapshot⑦render⑧concat⑨验收。
+- **零差异迁移方法**：每片新生成 index.html 对 git HEAD 老版 `verify.compare` 行级比对要求 0 差异（唯一宽恕资源路径 `media/` 前缀，比较取 basename），过 check＋snapshot 目验老实拍三重门控；五片均一次/两轮内归零。
+- **为变体扩的包接口**：心经新增 XJ_TAIL/`center_char_clips`（中央 76px 逐字 cue 到点变金带光晕）/`sentence_track`（底部整句 .28s 淡变）/DARK_GOLD_XJ 主题；theme 加 with_scene/with_subtitle 装配开关；page 加 body_lead_blank；封面 render_cover 资产路径显式覆盖；zbj 保留 compact CSS 双轨；素版 zsx blur 忠实保留。
+- **六提交**：3791cbf 建包＋zsx 打样（32 files/6489+）→ c3f2c90 cover 骨架＋wang（14/9008）→ 6c05696 zbj（15/7073）→ a0f5dcf pro 跨项目 cues（6/317±318）→ eb24f71 xinjing（18/1912+/1041-）→ 920c83d assets 归位（102/910+）。
+- **全量验收（10-06 下午）**：五片 check 全 0 error（warning 3/14/2/20/18＝同源老基线接受项：composition_file_too_large/nested_structure 等）；五片 make_video 无并发连续两遍重生**字节全 SAME**（确定性/幂等；勿与 check 并发跑，读写竞争会假报 DIFF）；zbj/wang 封面 cdp-shot 1x 对黄金参考目验一致；媒体字节级核对后五片成片/音频就位 media/，根目录五个旧目录删除。
+- **遗留**：`zhushixing-video-pro` 空目录被系统级进程持柄（rm/rd/PowerShell 均 busy，Restart Manager 返回 ACCESS_DENIED），git 不跟踪空目录、对仓库零影响，重启后删除即可。
+- **耗时**：挂钟锚点 10-05 23:43（建包打样）→10-06 13:58（资产归位）约 14 小时，含 00:21–07:47 夜间间隔约 7.5h；实际作业约 **6.5–7 小时**（跨会话，含每片零差异调试/截图目验/验收，无渲染——成片沿用现有 mp4）。
