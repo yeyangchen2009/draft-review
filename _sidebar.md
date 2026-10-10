@@ -1,11 +1,19 @@
 * [首页](/README.md)
 
-## 草稿目录（71篇）
+## 草稿目录（77篇）
 
-### 口播稿（风格试写）
+### 口播稿 · HyperFrames 视频教程
 
-* [一个文盲樵夫和一位教授各写一首诗，分出了禅宗千年](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF/2026%E5%B9%B410%E6%9C%8810%E6%97%A5-%E6%85%A7%E8%83%BD%E7%A5%9E%E7%A7%80%E4%B8%A4%E9%A6%96%E5%81%88.md)
-* [第一个 clip：不是拖时间轴，是给网页标签写时间](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF/2026%E5%B9%B410%E6%9C%8810%E6%97%A5-hf03%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
+* [HF01｜认识 HyperFrames：写一段 HTML，渲染出一条视频](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf01-%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [HF02｜init 三十秒：一条命令立规矩](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf02-init%E4%B8%89%E5%8D%81%E7%A7%92.md)
+* [HF03｜第一个 clip：不是拖时间轴，是给网页标签写时间](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf03-%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
+
+### 口播稿 · 中国佛教史视频（第1季）
+
+* [佛教史01｜猪八戒：一身毛病，不是编的](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-%E4%BD%9B%E6%95%99%E5%8F%B2/fjs01-%E7%8C%AA%E5%85%AB%E6%88%92.md)
+* [佛教史02｜梁武帝：和尚吃素，是皇帝定的](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-%E4%BD%9B%E6%95%99%E5%8F%B2/fjs02-%E6%A2%81%E6%AD%A6%E5%B8%9D.md)
+* [佛教史03｜达摩：皇帝攒满分，达摩判零](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-%E4%BD%9B%E6%95%99%E5%8F%B2/fjs03-%E8%BE%BE%E6%91%A9.md)
+* [佛教史04｜慧能与神秀：两首偈，分出禅宗千年](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-%E4%BD%9B%E6%95%99%E5%8F%B2/fjs04-%E6%85%A7%E8%83%BD%E7%A5%9E%E7%A7%80.md)
 
 ### HyperFrames 视频教程（图文连载）
 
@@ -83,6 +91,7 @@
 * [接口小，内部厚：把五部视频的 19 个脚本重构成一个深模块包](drafts/2026%E5%B9%B410%E6%9C%886%E6%97%A5-%E6%B7%B1%E6%A8%A1%E5%9D%97%E9%87%8D%E6%9E%84%E8%A7%86%E9%A2%91%E7%AE%A1%E7%BA%BF.md)
 * [博客全站 404 的五天半：一次 GitHub 账号暂停，和它换来的发布规矩](drafts/2026%E5%B9%B410%E6%9C%886%E6%97%A5-%E5%8D%9A%E5%AE%A2%E5%85%A8%E7%AB%99404%E7%9A%84%E4%BA%94%E5%A4%A9%E5%8D%8A.md)
 * [一集视频的诞生：把做视频固化成一条八步流水线](drafts/2026%E5%B9%B410%E6%9C%8810%E6%97%A5-%E8%A7%86%E9%A2%91%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%85%A8%E6%B5%81%E7%A8%8B.md)
+* [给 SQLite 台账套个网页：从数据库到后端到前端的选型与翻车记录](drafts/2026%E5%B9%B410%E6%9C%8810%E6%97%A5-%E7%BB%99SQLite%E5%8F%B0%E8%B4%A6%E5%A5%97%E4%B8%AA%E7%BD%91%E9%A1%B5.md)
 * [我把记了快十年的 Excel 台账搬进了 SQLite](drafts/2026%E5%B9%B410%E6%9C%8810%E6%97%A5-%E6%8A%8AExcel%E5%8F%B0%E8%B4%A6%E6%90%AC%E8%BF%9BSQLite.md)
 
 ## 流程与复盘
