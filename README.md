@@ -2,7 +2,7 @@
 
 > 叶扬的未发布成稿，手机端审稿用。本页由 sync_review_site.py 自动生成。
 
-当前共 **79** 篇草稿，最近同步：2026-10-11 20:58
+当前共 **80** 篇草稿，最近同步：2026-10-12 00:32
 
 ## 口播稿 · HyperFrames 视频教程
 
@@ -29,6 +29,7 @@
 |---|---|---|
 | 2026-10-09 | [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md) | 草稿 |
 | 2026-10-09 | [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md) | 草稿 |
+| 2026-10-12 | [时间是写在标签上的：做出你的第一个 clip](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-03%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md) | 草稿 |
 
 ## 中国佛教史（中系）
 
