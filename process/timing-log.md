@@ -881,19 +881,15 @@
 - **遗留**：`zhushixing-video-pro` 空目录被系统级进程持柄（rm/rd/PowerShell 均 busy，Restart Manager 返回 ACCESS_DENIED），git 不跟踪空目录、对仓库零影响，重启后删除即可。
 - **耗时**：挂钟锚点 10-05 23:43（建包打样）→10-06 13:58（资产归位）约 14 小时，含 00:21–07:47 夜间间隔约 7.5h；实际作业约 **6.5–7 小时**（跨会话，含每片零差异调试/截图目验/验收，无渲染——成片沿用现有 mp4）。
 
-## hf-03《第一个 clip》正式录屏 7 take（2026-10-11，素材先行第③步）
+## HyperFrames 教程 hf-03《第一个 clip》：素材先行首验（2026-10-10–10-11，PR #120）
 
-- **新流程首验**：粗稿开路→素材先行→对着素材定稿。录屏型教程先出操作清单与粗口播，真实彩排后正式录屏，再对着成片帧精修口播（#516）。
-- **7 take 全部目验通过**：rec-attrs-cdn 28s（四属性两拍＋CDN 换本地）／rec-title-time 26s（「我的第一个片段」＋2/4）／rec-play 11.9s（Edge 点 Play，实测标题 2.4s 点击、4.4s 进、8.4s 走）／rec-stack 50s（root relative→#card/#subtitle 样式→card 后写盖上→Alt+Up 提上→subtitle，5 个取景锚）／rec-check-fail 45.5s（红 ✗ content_overlap＋Fix 提示 data-layout-allow-overlap＋Check failed）／rec-allow-overlap 14s／rec-check-pass 45.5s（全绿 Check passed）。统一 1600×920@30 gdigrab，共 220.9s/4.8MB，已归位 `videos/projects/hf-03/media/`（gitignore）；时间窗速查在 `oneoffs/REC-NOTES.md`。
-- **★黑垫窗（本阶段核心新增）**：920 高入镜窗底缘 y≈915–920 有 Win11 圆角透明缝，后方用户最大化 WT 红字透入。解法＝无边框纯黑 Tk 窗 (0,900,1640,110)，SetWindowPos 插到入镜窗 z 序紧后一位：不透明状态栏挡垫、只在透明缝露黑。入镜窗无需下移、probe 构图与 Play 坐标全不变；不动用户任何窗口。Tk 线程泵消息、import rec_automate 带 PerMonitor DPI 感知。收尾 Tcl_AsyncDelete abort（exit 3）无害，产物完整、无残留。
-- **垂直取景修复**：属性长行裸 SETSEL 被最小滚动压到屏底；先把 caret 送文件最后内容行（splitlines 口径，非 NPP lines）预压视图，目标行稳落屏上 1/3；seg4 边录边涨行故每次现算 end_anchor()。
-- **check 等待踩坑**：无头稳态 check 20.7s(pass)/22.4s(fail)，TTY＋gdigrab 编码＋Edge dev 驻留时约 33–36s；首版等待 24s 两轮尾帧都停在 GPU probe 行没拍到结论，提到 42s 重录（5a/5c）通过。
-- **WT 窗口级关闭实证**：hf03-rec 与用户两个 WT 同窗单进程（PID 3520），对具体 HWND 发 WM_CLOSE 只关录制窗口；关闭后逐句柄核验用户两 WT、hf03-check（含本 Claude 会话 split pane）、用户 NPP/Edge/Typora 全部存活可见。
-- 耗时：约 **3.5 小时**（09:42–13:10，跨会话；含黑垫方案 POC 到集成、scroll_anchor 取景迭代、seg1 四版、check 两轮重录、归位与现场恢复）。
-
-## hf-03 口播定稿（素材先行第④步，#516，2026-10-11）
-
-- 对着 7 take 时间窗（REC-NOTES.md）与逐帧事实精修粗稿，五处对齐实拍：①补 CDN（jsdelivr→本地 gsap.min.js，断网可渲染/版本钉死）；②data-track-index 从粗稿后段挪到 seg1「先混个脸熟」（特写实拍在 seg1），删重复段；③层叠方向纠错（粗稿「卡片待在底下」与画面相反）＝relative 锚→#card/#subtitle 样式→card start=3/duration=2 插 title 后（后写盖上，卡片文案即「HTML 里后写的，盖在上面」）→Alt+Up 提行翻转→subtitle 6/4；④check 改真实弧：红 ✗ content_overlap t=3–4.88s＋Fix 行点名 data-layout-allow-overlap→加属性→四项全绿，机制点「守门员反对的是没打招呼的重叠」；⑤npm run dev→浏览器刷新点 Preview 的 Play；副标题实拍文案「零行 JavaScript，先出片子」用作小升华。
-- 保留王利杰三段骨架（钩子「样板不是你的」/重构「不是拖时间轴是写时间」/机制模型）与 hf-04 预告（GSAP paused→window.__timelines→seek）；结尾「我是叶扬，我们下期见」。
-- 定稿在审稿站 `drafts/口播稿-HF教程/hf03-第一个clip.md`（status: 待审，文末附不入片定稿说明列五处改动），汉字 1193＋拉丁术语 58 词，估算口播 ≈259s，与 hf-02（289s）同量级；待用户审后入 #517（src 正字稿/tts 借音稿→蝉镜试听取实测时长）。
-- 耗时：约 **20 分钟**（13:10–13:27，跨会话压缩；素材差异比对＋定稿＋字数核算）。
+- **流程新变（素材先行首验，仅限录屏型教程）**：旧序「稿→音→分镜→找素材」，本集反过来——先在脱敏沙盒 `F:\_hftest`（portable NPP 隔离实例＋EDGE CDP＋dev server）真实彩排并录屏，拿到 5 段演示素材后**对着素材定稿口播**，消除「分镜里想要的画面录不出来」的返工。SOP 文档暂不改，验证顺手再固化。
+- **录屏自动化套件（zero-dependency，全部入 oneoffs/）**：`rec_automate.py` ctypes 桌面底座（找窗/置前/键鼠/截屏）；`record_segments.py` 文件状态机编排 **5 段×7 take**（ffmpeg gdigrab 1600×920@30），关窗按窗口标题枚举＋exe 路径校验后才 taskkill 兜底，绝不按进程名批量杀；`npp_ops.py` 隔离 portable NPP 操作封装；配深色主题/取景探针/CDP reload/黑垫窗（遮 Win11 圆角透明缝）/Scintilla 诊断/全链路冒烟。`cut_shorts.py` 把 7 take 切成 13 段短片（PROBE/CUTS 定稿回填，10-11 12:42–13:12 重切 30 分）。
+- **取音与对齐**：蝉镜试听 0 豆取母带（24k mono，329.4s）；faster-whisper 转录 14:57→raw 15:00；NW 对齐 cues 15:06（约 10 分）。
+- **分镜**：make_video 15:06→index.html 17:28（**约 2 时 22 分**，含 StaticGuard 门控、snapshot 目验抽帧 17:32）。
+- **render**：17:45:52→18:08:22，**22.5 分**（9881 帧 1920×1080，沙箱 4K 内存限内单 worker）。
+- **finalize --intro（管线新能力，入 videopipe）**：封面 2s 吃正片开头声音（「哈喽大家好我是叶扬」响在封面静帧上），画面 -ss 2.0 帧精确裁起，body 音轨整段 copy——终片与 body **等长 329.367s**（常规模式是 +2s）。首版终片 18:13。
+- **★多音字硬伤：F2 共振峰客观判音＋句级音频外科（18:13–20:06，约 1 时 53 分）**：终片听辨怀疑量词「一行」被读成 yìxíng。建立客观判据——iŋ（xíng）韵 F2≈2727–2984Hz、aŋ（háng）韵 F2≈852–1125Hz，两簇相隔 1700Hz；20ms Hann 窗＋预加重 0.97＋4096 点 rfft，按 ASR 词级音节中点取能量峰测谱。全片 9 个「行」实测：仅 3 处「一行」误读 xíng（那行/整行/零行 JS/这行/运行等 6 处本就正确）。修补：①蝉镜借无歧读字「航」合成**整韵律小句**（孤立短语语速差 15–35%，整句 ≤5%；首轮 3 个短补丁因此废弃）；②20ms RMS 包络在停顿谷底/零段人工定界，窗时刻同时是 24k/48k 整数采样；③atempo 粗调＋numpy 线性重采样精修到**逐采样等长**（总变速 ≤4.8%）；④窗级 RMS 响度匹配（蝉镜单句电平低 1.6–4dB，增益 1.20–1.59，无削波）；⑤两端 12ms 余弦 crossfade；⑥终片轨（48k stereo）与母带（24k mono）两域同手术。终验：视频流 SHA256 补丁前后完全一致（-c:v copy 重封）、总长不变、改动样点全在三窗并集内（脚本断言）、6 边界无 click、重测 9 个「行」F2 全归正确簇、开头报名 onset 0.060s ASR 正常。脚本 `oneoffs/patch_hang_yin.py` 入库可复现；tts 稿沿 hf-02 惯例直接写借音字「航」不加注释，src 正字稿不动。
+- **PR**：#120（28 文件，源文件＋录屏套件＋补丁脚本＋finalize --intro），20:06–20:28 盘点/提交/自查（17 py 全编译、无大文件、敏感串扫描）/squash 合，约 22 分。
+- **成片**：`media/hf-03-yeyang-cover.mp4`，1920×1080 30fps 9881 帧＋AAC 48k stereo 192k，329.367s，24.7MB。
+- **挂钟**：10-10 下午完成沙盒搭建/真实彩排/5 段正式录屏/口播初稿（同日晚穿插发布慧能片 BV1pVpG6enNi）；10-11 有 mtime 锚点的连续作业 12:42→20:28 约 **7 时 46 分**（含素材重切 30 分、取音对齐 24 分、分镜 2 时 22 分、render 22 分、finalize 4 分、多音字诊断＋补丁 1 时 53 分、PR 22 分，及两段约 1.5 时的待料/目验间隙）。

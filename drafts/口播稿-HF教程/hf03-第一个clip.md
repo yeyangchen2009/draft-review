@@ -2,7 +2,7 @@
 title: HF03｜第一个 clip：不是拖时间轴，是给网页标签写时间
 date: 2026-10-11
 tags: [口播稿]
-status: 待审
+status: 草稿
 ---
 
 哈喽大家好，我是叶扬。
@@ -17,7 +17,7 @@ status: 待审
 
 打开 index.html，找到中间那行 h1。
 
-先盯住它身上的属性：class="clip"，data-start="0"，data-duration="10"。一个章，两个数字。
+先盯住它身上的属性：class 等于 clip，data-start 等于 0，data-duration 等于 10。一个章，两个数字。
 
 章，是 class 等于 clip。clip，片段。想让一个网页元素成为视频里的片段，就得盖这个章；没有它，渲染器扫过页面当没看见，字写得再大、颜色再艳，也进不了成片。
 
@@ -80,19 +80,3 @@ status: 待审
 灵魂在 seek。hf-04，我们接着来。
 
 我是叶扬，我们下期见。
-
----
-
-> **定稿说明（不入片，2026-10-11 对着 7 段正式录屏素材修订，供审）**
->
-> 与粗稿相比，五处叙事已对齐实拍素材：
->
-> 1. **补 CDN 换本地**：seg1 实拍有把 GSAP 从 jsdelivr CDN 换成本地 gsap.min.js 的动作，粗稿完全没提，已补一小段（断网可渲染、版本钉死）。
-> 2. **data-track-index 挪前**：seg1 特写就拍到它，改成「先混个脸熟」一句带过，删掉粗稿后面单独的澄清段，避免重复。
-> 3. **层叠叙事按实拍重写**：粗稿写「卡片老老实实待在标题底下」与画面相反。实际链路＝#root 加 position: relative → 加 #card/#subtitle 样式 → 卡片 start=3/duration=2 插在标题后（后写者盖上，卡片文案就是「HTML 里后写的，盖在上面」）→ Alt+Up 提行翻转上下 → 再加副标题 start=6/duration=4。已全部按此改写。
-> 4. **check 换成真实红→绿弧**：粗稿泛讲「三个错」，实拍是 content_overlap 红错（t=3–4.88s，#card inside #title），Fix 行直接点名 data-layout-allow-overlap，加上后四项全绿。「忘章/出界/秒当帧」压缩为一句铺陈，主弧让给实拍。守门员「反对的是没打招呼的重叠」为机制点。
-> 5. **npm run dev → 浏览器刷新点 Play**：素材没有敲 dev 命令的镜头（dev server 已在后台跑），实际拍的是 Edge 里 reload 后点 Preview 的 Play；副标题文案「零行 JavaScript，先出片子」是实拍画面里的字，已用作小升华。
-> 6. **复审调整：报名提前到全篇第一句**（2026-10-11 用户意见）：「哈喽大家好，我是叶扬。」→「上一集，台子搭好了」紧随其后；删掉原第 6 段的报名。**封面 2s 容量已实测核算**：hf-01 同音色 6 字「哈喽我是叶扬」TTS 实测 1.52s，9 字版按该句语速 0.25s/字推算 2.1–2.3s，略超 2s 封面；超出的尾音落在 seg1 静止首屏（0–3.2s 无动作）上，零穿帮；若 #517 蝉镜实测 >2.3s，#518 将封面静帧 2.0s 放到 2.5s（COVER_HOLD）。
-> 7. **TTS 前帧核纠错（2026-10-11）**：原「Lint 零错误，运行时零错误，布局零问题」系杜撰——抽 rec-check-pass.mp4 第 40s 帧核对，真实全绿是四项：Runtime 0 errors、Layout 0 issues across 9 samples、Motion 0 errors、Contrast 4/4 pass WCAG AA（另有 Snapshots disabled，口播不念），已改为「运行时零错误，布局零问题，动态也零错误；对比度四项检查，全过 WCAG AA」。卡片配色同步核实：#card 字色 #fbbf24（琥珀色）、#subtitle #a1a1aa（灰色），与「琥珀色大字／灰色小字」一致。
->
-> 全文汉字约 1198＋拉丁术语 58 词，估算口播约 260s（4 分 20 秒），与 hf-02 成片 289s 同量级；以 #517 蝉镜试听实测时长为准。
