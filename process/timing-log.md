@@ -880,3 +880,20 @@
 - **全量验收（10-06 下午）**：五片 check 全 0 error（warning 3/14/2/20/18＝同源老基线接受项：composition_file_too_large/nested_structure 等）；五片 make_video 无并发连续两遍重生**字节全 SAME**（确定性/幂等；勿与 check 并发跑，读写竞争会假报 DIFF）；zbj/wang 封面 cdp-shot 1x 对黄金参考目验一致；媒体字节级核对后五片成片/音频就位 media/，根目录五个旧目录删除。
 - **遗留**：`zhushixing-video-pro` 空目录被系统级进程持柄（rm/rd/PowerShell 均 busy，Restart Manager 返回 ACCESS_DENIED），git 不跟踪空目录、对仓库零影响，重启后删除即可。
 - **耗时**：挂钟锚点 10-05 23:43（建包打样）→10-06 13:58（资产归位）约 14 小时，含 00:21–07:47 夜间间隔约 7.5h；实际作业约 **6.5–7 小时**（跨会话，含每片零差异调试/截图目验/验收，无渲染——成片沿用现有 mp4）。
+
+## hf-03《第一个 clip》正式录屏 7 take（2026-10-11，素材先行第③步）
+
+- **新流程首验**：粗稿开路→素材先行→对着素材定稿。录屏型教程先出操作清单与粗口播，真实彩排后正式录屏，再对着成片帧精修口播（#516）。
+- **7 take 全部目验通过**：rec-attrs-cdn 28s（四属性两拍＋CDN 换本地）／rec-title-time 26s（「我的第一个片段」＋2/4）／rec-play 11.9s（Edge 点 Play，实测标题 2.4s 点击、4.4s 进、8.4s 走）／rec-stack 50s（root relative→#card/#subtitle 样式→card 后写盖上→Alt+Up 提上→subtitle，5 个取景锚）／rec-check-fail 45.5s（红 ✗ content_overlap＋Fix 提示 data-layout-allow-overlap＋Check failed）／rec-allow-overlap 14s／rec-check-pass 45.5s（全绿 Check passed）。统一 1600×920@30 gdigrab，共 220.9s/4.8MB，已归位 `videos/projects/hf-03/media/`（gitignore）；时间窗速查在 `oneoffs/REC-NOTES.md`。
+- **★黑垫窗（本阶段核心新增）**：920 高入镜窗底缘 y≈915–920 有 Win11 圆角透明缝，后方用户最大化 WT 红字透入。解法＝无边框纯黑 Tk 窗 (0,900,1640,110)，SetWindowPos 插到入镜窗 z 序紧后一位：不透明状态栏挡垫、只在透明缝露黑。入镜窗无需下移、probe 构图与 Play 坐标全不变；不动用户任何窗口。Tk 线程泵消息、import rec_automate 带 PerMonitor DPI 感知。收尾 Tcl_AsyncDelete abort（exit 3）无害，产物完整、无残留。
+- **垂直取景修复**：属性长行裸 SETSEL 被最小滚动压到屏底；先把 caret 送文件最后内容行（splitlines 口径，非 NPP lines）预压视图，目标行稳落屏上 1/3；seg4 边录边涨行故每次现算 end_anchor()。
+- **check 等待踩坑**：无头稳态 check 20.7s(pass)/22.4s(fail)，TTY＋gdigrab 编码＋Edge dev 驻留时约 33–36s；首版等待 24s 两轮尾帧都停在 GPU probe 行没拍到结论，提到 42s 重录（5a/5c）通过。
+- **WT 窗口级关闭实证**：hf03-rec 与用户两个 WT 同窗单进程（PID 3520），对具体 HWND 发 WM_CLOSE 只关录制窗口；关闭后逐句柄核验用户两 WT、hf03-check（含本 Claude 会话 split pane）、用户 NPP/Edge/Typora 全部存活可见。
+- 耗时：约 **3.5 小时**（09:42–13:10，跨会话；含黑垫方案 POC 到集成、scroll_anchor 取景迭代、seg1 四版、check 两轮重录、归位与现场恢复）。
+
+## hf-03 口播定稿（素材先行第④步，#516，2026-10-11）
+
+- 对着 7 take 时间窗（REC-NOTES.md）与逐帧事实精修粗稿，五处对齐实拍：①补 CDN（jsdelivr→本地 gsap.min.js，断网可渲染/版本钉死）；②data-track-index 从粗稿后段挪到 seg1「先混个脸熟」（特写实拍在 seg1），删重复段；③层叠方向纠错（粗稿「卡片待在底下」与画面相反）＝relative 锚→#card/#subtitle 样式→card start=3/duration=2 插 title 后（后写盖上，卡片文案即「HTML 里后写的，盖在上面」）→Alt+Up 提行翻转→subtitle 6/4；④check 改真实弧：红 ✗ content_overlap t=3–4.88s＋Fix 行点名 data-layout-allow-overlap→加属性→四项全绿，机制点「守门员反对的是没打招呼的重叠」；⑤npm run dev→浏览器刷新点 Preview 的 Play；副标题实拍文案「零行 JavaScript，先出片子」用作小升华。
+- 保留王利杰三段骨架（钩子「样板不是你的」/重构「不是拖时间轴是写时间」/机制模型）与 hf-04 预告（GSAP paused→window.__timelines→seek）；结尾「我是叶扬，我们下期见」。
+- 定稿在审稿站 `drafts/口播稿-HF教程/hf03-第一个clip.md`（status: 待审，文末附不入片定稿说明列五处改动），汉字 1193＋拉丁术语 58 词，估算口播 ≈259s，与 hf-02（289s）同量级；待用户审后入 #517（src 正字稿/tts 借音稿→蝉镜试听取实测时长）。
+- 耗时：约 **20 分钟**（13:10–13:27，跨会话压缩；素材差异比对＋定稿＋字数核算）。
