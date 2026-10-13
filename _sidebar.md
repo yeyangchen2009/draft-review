@@ -28,6 +28,7 @@
 * [五分半视频，十小时工时：时间到底花在哪儿了](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-%E4%BA%94%E5%88%86%E5%8D%8A%E8%A7%86%E9%A2%91%E7%9A%84%E5%8D%81%E5%B0%8F%E6%97%B6.md)
 * [TTS 把「一行」念成「一 xíng」：F2 判音与句级音频外科](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-TTS%E5%BF%B5%E7%99%BD%E5%AD%97%E4%B8%8E%E9%9F%B3%E9%A2%91%E5%A4%96%E7%A7%91.md)
 * [时间是写在标签上的：做出你的第一个 clip](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-03%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
+* [实拍还没开始，bug 已经死了三轮：hf-04 开拍前的静态加固](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8813%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%BC%80%E6%8B%8D%E5%89%8D%E4%B8%89%E8%BD%AE%E9%9D%99%E6%80%81%E5%8A%A0%E5%9B%BA.md)
 
 ### 中国佛教史（中系）
 
