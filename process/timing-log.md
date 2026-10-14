@@ -938,3 +938,43 @@
 - **hf-02：BV1XFWw6WEhv**（aid 117430898657769，31.87MB，314s）「30秒init一个AI视频项目：HyperFrames生成的6个文件，藏着HTML渲染成视频的契约」；**hf-03：BV1oQWc6fEy9**（aid 117430915432781，24.7MB，329s）「让一个div变成视频片段：HyperFrames第一个clip，层叠顺序为什么反直觉」。均 tid=122 野生技术协会、自制、各自 cover-final.png、片尾互链；bili-pub upload 接口 code:0，约 1–2 分钟后 `biliup show <BV>` 复查 state=0 公开。
 - **坑**：`biliup list` 输出带 ANSI 色码会打断管道 grep 的 BV 字符串匹配（返回空非失败证据），复查改用 `show <BV>`；且该子命令 JSON 在 2>&1 流里，2>/dev/null 会丢全部输出。
 - 纯命令行发布（用户在机用电脑，桌面自动化仍冻结），写两份简介＋上传＋等转码复查约 **15 分**。
+
+## 中系 27–31 一次性补发：中国佛教史 32 篇全系列完结（2026-10-13 下午）
+
+- **背景**：中系 32 篇写作早已全部完结，已发至中26（#101）；中27–31 五篇定稿在审稿站/vault 双份躺了约两周，16 张配图早已入 `static/screenshots/`。
+- **方案（用户拍板）**：五篇 issue 一次发完、最后只做一次全量构建。理由：Gmeek build 端无并发取消（仅 deploy 端有 concurrency group `pages`），连续 opened 五个 issue 会起五个增量构建并发 push 竞争；禁 workflow 期间 issue 照建只是不触发，最后手动全量收口最干净。
+- **工艺**：① `gh workflow disable "build Gmeek"`；② issue 操作——**#102**（中27，9-30 早已建的旧 issue）用定稿整体覆盖（剥 frontmatter＋去前导空行，首行即正文对齐已发文章），内容差异含一处 mermaid 修正（subgraph 三大异地复刻改为 KAI 直连三节点、虚线边 `.-` 修为老渲染器兼容的 `.->`）；**#128/#129/#130/#131** 串行新建，标题「中N｜…」、标签「学习笔记」「中国佛教史」；③ `gh workflow enable` 后 `gh workflow run "build Gmeek"` 手动全量（runAll）一次；④ run **38356110926** Generate＋Deploy 双 success，auto commit **9d30dd5**。
+- **坑/要点**：post 文件名＝**issue 编号不是集数**——验收先验 post/27–31.html 拿到的是 G17/番外等旧文，改验 post/102/128/129/130/131 才对；批量补发 SOP＝disable→串行建/改 issue→enable→一次 workflow_dispatch。
+- **验收**：五页全 HTTP 200、标题正确；图片引用 3/3/3/4/3 共 16 张全部 200；GmeekMermaid.js 与已发文章同构加载；首页含五篇链接。
+- **门户补勾**：手工 `gh issue create` 绕过了 publish-post.py 的门户 hook，验收时发现 #72 路线图仍只勾到中27。导出 #72 正文把中28–31 四行 ⏳/💤 改 ✅ 链接后 edit，增量构建 run 38359137696（1m04s），post/72.html 四链接齐。教训两条：①批量手工补发后必须回门户 issue 补勾选；②一次小事故——Windows 原生 python 不认 Git Bash 的 `/tmp` 路径致替换脚本失败，但同条命令里的 `gh issue edit` 仍执行，空 edit 白触发一次构建（run 38358840720），等它跑完才发真编辑避免并发；给原生 python 传临时路径用 `cygpath -w`。
+- **收尾**：审稿站/vault 共 10 份源稿 status 批量转已发布；draft-review 已直推 main（既定例外）；vault 是个人库且工作区混有用户自己的 9 个未跟踪项，5 篇 status 改动只留工作区、不替提交。
+- **链接**：[中27](/post/102.html)、[中28](/post/128.html)、[中29](/post/129.html)、[中30](/post/130.html)、[中31](/post/131.html)——中国佛教史中系 32 篇（中00–31）至此**写作与发布双线全部完结**。
+- **耗时**：剥稿／issue 操作／构建／验收全流程约 **35 分**（全量构建 3m29s＋门户两次增量构建约 2.5 分；disable 与 issue edit 各被 auto 分类器临时拦过一次，原样重试即过）。
+
+## hf-04 实拍代录：12 take 素材全成片（2026-10-14，#535，用户离机代录）
+
+- **结果**：12 take 全部过抽帧目验（含 seg1、seg6 各一次重录，seg7 方案改道），素材复制归位 `videos/projects/hf-04/media/`（沿 hf-03 惯例：`media/` 在 .gitignore、二进制不入库，源脚本与五权威态走 PR）。成片素材时长：seg1 rec-play-static 13s／seg2a rec-css-keyframes 26s／seg2b rec-play-css 13s／seg3 rec-snap-css 86.6s／seg4a rec-timer-code 18s／seg4b rec-play-timer 13s／seg5a rec-snap-timer 166.6s／seg5b rec-check-pass 31s／seg6 rec-gsap-three 46.7s／seg7 rec-play-final 13.6s／seg8 rec-console-seek 70.6s／seg9 rec-render 83.7s，ffprobe 实测合计 **576.8s（9 分 37 秒）**。
+- **事故与根治（实拍期新增四条跨集能力）**：
+  ① **seg1 上屏合成挂起**：Edge 窗口屏幕整块均匀灰、DOM 完整、CDP captureScreenshot 完全正常。wait_studio_ready 改双轨——屏幕 Play 三角白像素探测＋CDP 截图复核，页面活而屏幕灰即 minimize/restore 重建 swapchain 自愈（heal_edge_compositing），seg1 重录成片；rec_automate 补 SW_MINIMIZE。
+  ② **布景布局定稿（s3/s4）**：card 改 780×266 定高底板、三元素 abspos top 钉画面中心、清掉占位句；seek 0/2.4/3/6.3/9 五点目验＋computed style（visibility/opacity/rect）双证。布局变了 seg6 旧片作废，随新布局重录。
+  ③ **沉浸式翻译扩展红点**：隔离 profile 装的扩展向每页右缘注入 `#immersive-translate-popup`（宿主 0×0、红圆钮在 Shadow DOM，elementsFromPoint 只摸到宿主），贴 player 视口右缘被切 1/3。cdp_ctrl 新增 hide_page_extensions（important 样式注入＋MutationObserver 延迟注入兜底，reload 后须重注）；右缘条带拼图回溯确认此前 10 个素材全部无污染。
+  ④ **seg7 改道裸 player**：Studio Preview 实时画布四轮四种坏画面（时间码/轨道/裸 player 引擎路径全对），探针证实裸 player 无任何可见控件、CDP 合成 Space 不触发播放；定稿 `__player.play()`（与点 Studio 三角同一条实时引擎路径；点击播放叙事 seg1/seg2b 已两次入镜，不重复），一次成片。
+- **seg8/seg9 验收**：seg8 十拍 seek 的 getTime 断言 a–j 全 OK，33-seek-a..j 全屏证据图逐拍画面正确（2.4 title 半透浮半路／3 title 就位而 card opacity 0（back.out 起点）／6.3 三件套且 sub 半路／9 全就位／0 空台／五回 2.4 重复）；视频内窗口几何全程正确（右缘 60px 像素量化全暗，第二窗口只在录区外）；DevTools 关闭动作落在 ~71s、超出 70s 录区（每拍实测 ~4.8s 吃满预算），尾帧停在空提示符可直接掐尾——另发现关闭 DevTools 后 Edge 跳回旧矩形 1310×790，仅发生在停录后、不入素材（step_close 待补关闭后重摆位）。seg9 render 走 drawElement 模式 39.0s 出片（253.9KB／10.0s／300 帧，static-frame dedup 209/209 复用），尾帧正停绿色输出路径行 `rec-render\hf04-seek.mp4`。
+- **坐标标定回填**：系统 150% DPI × 页面 50% zoom ⇒ devicePixelRatio 0.75，CSS×0.75＝物理像素；1920×1080 固定 body 在 1056 高 CSS 视口居中溢出 -24；页面 zoom 唯一通道是真实键盘 Ctrl 五击（CDP 合成键对浏览器快捷键无效），DevTools 自身 zoom 相反只收 dt_ws 的合成键（定档 z2 dpr 1.875）。
+- **清理**：9 个一次性探针（_probe_*／_tune_subtop／_hide_ext）删除；抽帧证据留仓库外 `F:\_hftest\hf04-rec\frames\`；guard 三身份闸全程零误触，中途两次后台窗口瞬抢（Shell_TrayWnd／ThumbnailDeviceHelperWnd）经空闲时长＋窗口枚举判定用户未回机后抬回继续。
+- **后续（节奏用户掌握，不催）**：口播定稿用户审 → #530 取音→transcribe/cues（measure_offset 测 time_offset）→make_video→check→render→finalize --intro→F2 复查→源文件 PR；代录脚本增强（rec_automate SW_MINIMIZE、record_segments 灰屏自愈/seg7 player 化/页面 zoom 幂等/seg8 增补、cdp_ctrl player_play＋hide_page_extensions、blackmat Event 关闭、step_close 关闭后重摆位）走分支 PR；今晚只录素材，不发布 B 站。
+- **耗时**：成片素材时间戳 06:48–11:47，实拍-布景修复-探针排查-抽帧目验墙钟约 **5 小时**（含 seg7 四轮 Studio 废片、红点排查、s3/s4 布局重排、seg1/seg6 两次重录）；此前 A 节 7 项真机标定另计（#534）。
+
+## hf-04 成片：606.5s/26 幕全链验收，CFR 根治 VFR 抽帧崩溃（2026-10-14 下午至深夜，#530/#540）
+
+- **30s 缺口方案（用户授权「以你的经验处理」，不补拍）**：口播母带 606.5s 比实拍净长 576.8s 多约 30s。十段动态叙事点（CSS/snapshot/timer/race/check/GSAP/console-seek/render）素材等长或近等长覆盖；约 214s 纯论述段上概念卡与证据墙（ser 三帧墙、tk 六帧墙、check 全绿终端、六适配器＋`seek(t)` 金框、data-composition-id 三条）；seg6 GSAP 段 22s 差额用代码 freeze＋底注轮替消化。
+- **时间轴**：measure_offset 实测 58/71 onset 中位 +300.1ms → `char_track(time_offset=0.30)`；313 句／26 幕，33 段录屏＋12 张 CSS 全屏真帧（css-2.1/2.5/2.9）。
+- **封面返工**：t2「seek 里。」含拉丁词比 hf-03 纯中文宽，控制台卡片压住大字行；主视觉基点 600→430 整体上移 170px，令箭箭头重指 2.4 播放头三角，定稿印章单字「寻」。
+- **render 首崩与根治（本集最大坑）**：首轮 gdigrab 精切段 avg_frame_rate 掉到 5–24fps（r 仍 30/1）被 hyperframes 判 VFR → 走 rawvideo NUT 双 ffmpeg 管道抽帧，33 路无上限 Promise.all 并发，16 路一帧未写即崩（hf-03 仅 13 路侥幸过）。cut_shorts 加 `-vf fps=30` 强制 CFR 并重建 PTS，33 段全部重切（不重拍）；二轮 render：`vfrPreflightCount:0`、33/33 成功、7142 帧全抽、`minVideoFrameCoverageRatio:1`。另 compile 期 28 条 sparse keyframes warning（默认 GOP 250，8s 片仅开头一个 IDR），脚本补 `-g 30 -keyint_min 30 -movflags +faststart` 供未来重跑；判定抽帧走缓存帧注入、不实时 seek mp4，不阻断本轮，不重切不重渲染。
+- **render 账**（Intel UHD 620，single-worker drawelement streaming＋ANGLE D3D11，18195 帧）：compile 14.8s／extract 1m31s／audio 1m58s／capture **46m56s**／assemble 1m18s，总 **52m03s**。
+- **finalize --intro**：封面头 2.000s 吃正片前 2s 声音、画面 -ss 2 裁起，终片 606.500s 与正片等长；ffprobe 1920×1080 yuv420p r=avg=30/1＋aac 48k stereo。音轨 mean −20.1dB／max −5.5dB，无 ≥1.2s 断流。
+- **F2 复查 57 点全过**：3 张 contact sheet——intro 接合 4 点（封面 0–2s／2.1s 正片首帧）＋26 幕中点＋cs 八段首尾 17 点（打字帧→结果帧、段间接缝不跳段）＋五处 video→freeze 接缝 10 点。一处虚惊：296.10 见深色「浮层」疑 NPP 自动补全闪现，经 ROI 逐帧亮度扫描（short 184 帧 minY 197.7、源段 31 个真实帧全无暗帧）证伪——实为 S13 设计层 `#g1-card` 代码卡 296.0–296.35 的淡出中间帧（卡 290.95 弹入后浮在录屏上当「放大镜」，与录屏第 39 行 `paused: true` 呼应），296.20 切同源 freeze 视觉连续。
+- **新坑两则**：① ffmpeg 7.1.1/Windows filtergraph 中盘符冒号 `C:/` 被当选项分隔符，`C\:/` 转义实测也无效；解法＝字体复制到工作目录走无盘符相对路径＋subprocess `cwd=`。② 源 rec-gsap-three 13.5–19.6 仅 31 个真实帧（≈5fps）——gdigrab VFR 抖动的极端实证；静态讲解段 CFR 重采样后无碍。
+- **入库**：PR#139 squash 已并主干（421511f），14 文件 15884 行（make_video 1070／cues.json 13772／make_cover 151／成片链 6 oneoffs：make_tts 借音稿硬闸、check_pron、measure_offset、cut_shorts、make_review_clips 25 点、f2_contact_sheet 57 点／双稿／3 json）。25 点多音字人耳验收此前已全过，F2 不重复。
+- **状态**：终片 `media/hf-04-yeyang-cover.mp4` 本地留存（gitignored），本阶段不发 B 站，发布节奏用户掌握。
+- **耗时**：13:49–22:54 墙钟约 **9 小时 05 分**（含 52m render 等待、CFR 两轮重切、封面返工一轮、F2 浮层排查约 1h、PR 收尾）。

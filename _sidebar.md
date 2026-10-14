@@ -1,12 +1,13 @@
 * [首页](/README.md)
 
-## 草稿目录（86篇）
+## 草稿目录（90篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
 * [HF01｜认识 HyperFrames：写一段 HTML，渲染出一条视频](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf01-%E8%AE%A4%E8%AF%86HyperFrames.md)
 * [HF02｜init 三十秒：一条命令立规矩](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf02-init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [HF03｜第一个 clip：不是拖时间轴，是给网页标签写时间](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf03-%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
+* [HF04｜灵魂在 seek：不是让画面动起来，是让任意一秒随叫随到](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf04-%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
 
 ### 口播稿 · 中国佛教史视频（第1季）
 
@@ -21,6 +22,9 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [33 路抽帧崩了一半，和一块不存在的浮层——hf-04 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8814%E6%97%A5-%E5%A4%8D%E7%9B%98-33%E8%B7%AF%E6%8A%BD%E5%B8%A7%E4%B8%8E%E4%B8%80%E5%9D%97%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E6%B5%AE%E5%B1%82.md)
+* [灵魂在 seek：视频里的动画，必须能倒着播](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8814%E6%97%A5-04%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
+* [实拍还没开始，bug 已经死了三轮：hf-04 开拍前的静态加固](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8813%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%BC%80%E6%8B%8D%E5%89%8D%E4%B8%89%E8%BD%AE%E9%9D%99%E6%80%81%E5%8A%A0%E5%9B%BA.md)
 * [画面先于台词：一集教程倒着做出来的录屏工作流](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-%E7%B4%A0%E6%9D%90%E5%85%88%E8%A1%8C%E5%BD%95%E5%B1%8F%E5%B7%A5%E4%BD%9C%E6%B5%81.md)
 * [复盘 hf-03（下）：让封面在第二秒开口，和 check 这个守门员](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%B0%81%E9%9D%A2%E5%8F%91%E5%A3%B0%E4%B8%8Echeck%E5%AE%88%E9%97%A8%E5%91%98.md)
 * [字幕总比声音早半秒：我把「对齐」从手感做成了测量](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%AD%97%E5%B9%95%E6%97%A9%E5%8D%8A%E7%A7%92%E4%B8%8Eonset%E5%AE%9E%E6%B5%8B.md)
@@ -28,7 +32,6 @@
 * [五分半视频，十小时工时：时间到底花在哪儿了](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-%E4%BA%94%E5%88%86%E5%8D%8A%E8%A7%86%E9%A2%91%E7%9A%84%E5%8D%81%E5%B0%8F%E6%97%B6.md)
 * [TTS 把「一行」念成「一 xíng」：F2 判音与句级音频外科](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-%E5%A4%8D%E7%9B%98-TTS%E5%BF%B5%E7%99%BD%E5%AD%97%E4%B8%8E%E9%9F%B3%E9%A2%91%E5%A4%96%E7%A7%91.md)
 * [时间是写在标签上的：做出你的第一个 clip](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8812%E6%97%A5-03%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
-* [实拍还没开始，bug 已经死了三轮：hf-04 开拍前的静态加固](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8813%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%BC%80%E6%8B%8D%E5%89%8D%E4%B8%89%E8%BD%AE%E9%9D%99%E6%80%81%E5%8A%A0%E5%9B%BA.md)
 
 ### 中国佛教史（中系）
 
