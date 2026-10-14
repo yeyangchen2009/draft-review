@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（90篇）
+## 草稿目录（94篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -22,6 +22,10 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [一块不存在的浮层——57 点验收与 ROI 像素取证（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E4%B8%80%E5%9D%97%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E6%B5%AE%E5%B1%82.md)
+* [口播长出 30 秒，不补拍——画面供给侧的三招消化法（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E5%8F%A3%E6%92%AD%E9%95%BF%E5%87%BA30%E7%A7%92.md)
+* [33 路抽帧崩了一半——VFR 病根与 CFR 根治（复盘四篇·之二）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-33%E8%B7%AF%E6%8A%BD%E5%B8%A7%E5%B4%A9%E4%BA%86%E4%B8%80%E5%8D%8A.md)
+* [五个小时录九分半——hf-04 深夜代录的四个实拍坑（复盘四篇·之一）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%871-%E4%BA%94%E4%B8%AA%E5%B0%8F%E6%97%B6%E5%BD%95%E4%B9%9D%E5%88%86%E5%8D%8A.md)
 * [33 路抽帧崩了一半，和一块不存在的浮层——hf-04 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8814%E6%97%A5-%E5%A4%8D%E7%9B%98-33%E8%B7%AF%E6%8A%BD%E5%B8%A7%E4%B8%8E%E4%B8%80%E5%9D%97%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E6%B5%AE%E5%B1%82.md)
 * [灵魂在 seek：视频里的动画，必须能倒着播](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8814%E6%97%A5-04%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
 * [实拍还没开始，bug 已经死了三轮：hf-04 开拍前的静态加固](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8813%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%BC%80%E6%8B%8D%E5%89%8D%E4%B8%89%E8%BD%AE%E9%9D%99%E6%80%81%E5%8A%A0%E5%9B%BA.md)
