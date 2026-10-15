@@ -1,0 +1,2 @@
+# sync_review_site.py 的删除回收站（--force 时孤儿移入，可本地恢复，不入库）
+.sync-trash/
