@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（101篇）
+## 草稿目录（103篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -8,6 +8,7 @@
 * [HF02｜init 三十秒：一条命令立规矩](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf02-init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [HF03｜第一个 clip：不是拖时间轴，是给网页标签写时间](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf03-%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
 * [HF04｜灵魂在 seek：不是让画面动起来，是让任意一秒随叫随到](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf04-%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
+* [HF05｜别用眼睛看：check 六道关，让机器先替你挑错](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf05-%E5%88%AB%E7%94%A8%E7%9C%BC%E7%9D%9B%E7%9C%8B.md)
 
 ### 口播稿 · 中国佛教史视频（第1季）
 
@@ -22,6 +23,7 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [让机器挑错的一集，栽在机器的念白上——hf-05 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98-%E6%9C%BA%E5%99%A8%E6%8C%91%E9%94%99%E7%9A%84%E4%B8%80%E9%9B%86%E6%A0%BD%E5%9C%A8%E5%BF%B5%E7%99%BD%E4%B8%8A.md)
 * [一块不存在的浮层——57 点验收与 ROI 像素取证（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E4%B8%80%E5%9D%97%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E6%B5%AE%E5%B1%82.md)
 * [口播长出 30 秒，不补拍——画面供给侧的三招消化法（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E5%8F%A3%E6%92%AD%E9%95%BF%E5%87%BA30%E7%A7%92.md)
 * [33 路抽帧崩了一半——VFR 病根与 CFR 根治（复盘四篇·之二）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-33%E8%B7%AF%E6%8A%BD%E5%B8%A7%E5%B4%A9%E4%BA%86%E4%B8%80%E5%8D%8A.md)
