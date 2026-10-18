@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（107篇）
+## 草稿目录（109篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -9,6 +9,7 @@
 * [HF03｜第一个 clip：不是拖时间轴，是给网页标签写时间](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf03-%E7%AC%AC%E4%B8%80%E4%B8%AAclip.md)
 * [HF04｜灵魂在 seek：不是让画面动起来，是让任意一秒随叫随到](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf04-%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
 * [HF05｜别用眼睛看：check 六道关，让机器先替你挑错](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf05-%E5%88%AB%E7%94%A8%E7%9C%BC%E7%9D%9B%E7%9C%8B.md)
+* [HF06｜给片子配上声音：媒体进场三兄弟与一把响度尺](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf06-%E7%BB%99%E7%89%87%E5%AD%90%E9%85%8D%E4%B8%8A%E5%A3%B0%E9%9F%B3.md)
 
 ### 口播稿 · 中国佛教史视频（第1季）
 
@@ -23,6 +24,7 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [【hf-06·速读】借音一版过，录屏两轮成——hf-06 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8818%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%80%9F%E9%9F%B3%E4%B8%80%E7%89%88%E8%BF%87%E4%B8%8E%E5%8D%81%E5%85%ADtake%E4%B8%80%E6%AC%A1%E6%88%90.md)
 * [【hf-05·之4】机器听不出的错字——hf-05 的 WCAG 锁死、「得到」带跑与音频外科（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E6%9C%BA%E5%99%A8%E5%90%AC%E4%B8%8D%E5%87%BA%E7%9A%84%E9%94%99%E5%AD%97.md)
 * [【hf-05·之3】帧越少，烤越久——hf-05 的 69 分钟 PNG 账与最贵工序左移（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E5%B8%A7%E8%B6%8A%E5%B0%91%E7%83%A4%E8%B6%8A%E4%B9%85.md)
 * [【hf-05·之2】六道关怎么拍——hf-05 分镜里的三反转、双盒几何与两次撞墙（复盘四篇·之二）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-%E5%85%AD%E9%81%93%E5%85%B3%E6%80%8E%E4%B9%88%E6%8B%8D.md)
