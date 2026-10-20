@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（110篇）
+## 草稿目录（115篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -25,6 +25,11 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [【hf-07·之4】四十一分钟烤一万七千帧——worker=1 渲染账与词级正音抽检（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E5%9B%9B%E5%8D%81%E4%B8%80%E5%88%86%E9%92%9F%E4%B8%80%E4%B8%87%E4%B8%83%E5%8D%83%E5%B8%A7%E4%B8%8E%E8%AF%8D%E7%BA%A7%E6%AD%A3%E9%9F%B3.md)
+* [【hf-07·之3】打回左上角的卡片与 finalize 前截获的封面——分镜两坑加封面追改（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E6%89%93%E5%9B%9E%E5%B7%A6%E4%B8%8A%E8%A7%92%E4%B8%8E%E5%B0%81%E9%9D%A2%E8%BF%BD%E6%94%B9.md)
+* [【hf-07·之2】静默 no-op 的调色——grade-compare 白烤一遍与彩排像素闸（复盘四篇·之二）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-%E9%9D%99%E9%BB%98no-op%E7%9A%84%E8%B0%83%E8%89%B2.md)
+* [【hf-07·之1】事故主角中期翻案——探针押错 CSS，像素证据当庭释放，setInterval 黑户上位（复盘四篇·之一）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%871-%E4%BA%8B%E6%95%85%E4%B8%BB%E8%A7%92%E4%B8%AD%E6%9C%9F%E7%BF%BB%E6%A1%88.md)
+* [【hf-07·速读】同一秒连拍四张，三张钉死一张乱跑——hf-07 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%90%8C%E4%B8%80%E7%A7%92%E8%BF%9E%E6%8B%8D%E5%9B%9B%E5%BC%A0%E7%9A%84%E4%B8%80%E9%9B%86%E4%B8%AD%E6%9C%9F%E6%8D%A2%E4%BA%86%E4%B8%BB%E8%A7%92.md)
 * [【hf-06·速读】借音一版过，录屏两轮成——hf-06 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8818%E6%97%A5-%E5%A4%8D%E7%9B%98-%E5%80%9F%E9%9F%B3%E4%B8%80%E7%89%88%E8%BF%87%E4%B8%8E%E5%8D%81%E5%85%ADtake%E4%B8%80%E6%AC%A1%E6%88%90.md)
 * [【hf-05·之4】机器听不出的错字——hf-05 的 WCAG 锁死、「得到」带跑与音频外科（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E6%9C%BA%E5%99%A8%E5%90%AC%E4%B8%8D%E5%87%BA%E7%9A%84%E9%94%99%E5%AD%97.md)
 * [【hf-05·之3】帧越少，烤越久——hf-05 的 69 分钟 PNG 账与最贵工序左移（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8817%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E5%B8%A7%E8%B6%8A%E5%B0%91%E7%83%A4%E8%B6%8A%E4%B9%85.md)
