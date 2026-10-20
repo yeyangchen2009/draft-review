@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（109篇）
+## 草稿目录（110篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -10,6 +10,7 @@
 * [HF04｜灵魂在 seek：不是让画面动起来，是让任意一秒随叫随到](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf04-%E7%81%B5%E9%AD%82%E5%9C%A8seek.md)
 * [HF05｜别用眼睛看：check 六道关，让机器先替你挑错](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf05-%E5%88%AB%E7%94%A8%E7%9C%BC%E7%9D%9B%E7%9C%8B.md)
 * [HF06｜给片子配上声音：媒体进场三兄弟与一把响度尺](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf06-%E7%BB%99%E7%89%87%E5%AD%90%E9%85%8D%E4%B8%8A%E5%A3%B0%E9%9F%B3.md)
+* [HF07｜把每一帧看清楚：snapshot 四连拍，与 seek 不到的黑户](drafts/%E5%8F%A3%E6%92%AD%E7%A8%BF-HF%E6%95%99%E7%A8%8B/hf07-%E6%8A%8A%E6%AF%8F%E4%B8%80%E5%B8%A7%E7%9C%8B%E6%B8%85%E6%A5%9A.md)
 
 ### 口播稿 · 中国佛教史视频（第1季）
 
