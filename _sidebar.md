@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（116篇）
+## 草稿目录（121篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -26,6 +26,11 @@
 
 * [一条命令立规矩：HyperFrames init 的三十秒](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-02init%E4%B8%89%E5%8D%81%E7%A7%92.md)
 * [写一段 HTML，渲染出一条视频：认识 HyperFrames](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%889%E6%97%A5-01%E8%AE%A4%E8%AF%86HyperFrames.md)
+* [【hf-08·深读 4/4】门控纪律、热态演录与两次四十分钟渲染账](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8823%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E9%97%A8%E6%8E%A7%E7%BA%AA%E5%BE%8B%E7%83%AD%E6%80%81%E6%BC%94%E5%BD%95%E4%B8%8E%E5%9B%9B%E5%8D%81%E5%88%86%E9%92%9F%E8%B4%A6.md)
+* [【hf-08·深读 3/4】补丁四层同改：三层全绿之后，52 在卡片上多活了一天](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8823%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E8%A1%A5%E4%B8%81%E5%9B%9B%E5%B1%82%E5%90%8C%E6%94%B9%E4%B8%8E%E7%9C%9F%E4%BA%A4%E5%8F%89%E6%B7%A1%E5%8C%96.md)
+* [【hf-08·深读 2/4】录制并行口径：六 take 全错位、静默退出与 77.5 秒孤儿](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8823%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-%E5%BD%95%E5%88%B6%E5%B9%B6%E8%A1%8C%E5%8F%A3%E5%BE%84%E4%B8%8E%E4%B8%89%E8%B5%B7%E4%BA%8B%E6%95%85.md)
+* [【hf-08·深读 1/4】六指纹与确定性：render 为什么不是录屏](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8823%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%871-%E5%85%AD%E6%8C%87%E7%BA%B9%E4%B8%8E%E7%A1%AE%E5%AE%9A%E6%80%A7.md)
+* [【hf-08·速读】连烤六次指纹全同，一个数字在画面里多活了一天——hf-08 成片复盘](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8823%E6%97%A5-%E5%A4%8D%E7%9B%98-%E8%BF%9E%E7%83%A4%E5%85%AD%E6%AC%A1%E6%8C%87%E7%BA%B9%E5%85%A8%E5%90%8C%E4%B8%8E%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E5%9B%9B%E5%8D%81%E5%88%86%E9%92%9F.md)
 * [【hf-07·之4】四十一分钟烤一万七千帧——worker=1 渲染账与词级正音抽检（复盘四篇·之四）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%874-%E5%9B%9B%E5%8D%81%E4%B8%80%E5%88%86%E9%92%9F%E4%B8%80%E4%B8%87%E4%B8%83%E5%8D%83%E5%B8%A7%E4%B8%8E%E8%AF%8D%E7%BA%A7%E6%AD%A3%E9%9F%B3.md)
 * [【hf-07·之3】打回左上角的卡片与 finalize 前截获的封面——分镜两坑加封面追改（复盘四篇·之三）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%873-%E6%89%93%E5%9B%9E%E5%B7%A6%E4%B8%8A%E8%A7%92%E4%B8%8E%E5%B0%81%E9%9D%A2%E8%BF%BD%E6%94%B9.md)
 * [【hf-07·之2】静默 no-op 的调色——grade-compare 白烤一遍与彩排像素闸（复盘四篇·之二）](drafts/HyperFrames/2026%E5%B9%B410%E6%9C%8820%E6%97%A5-%E5%A4%8D%E7%9B%98%E5%9B%9B%E7%AF%872-%E9%9D%99%E9%BB%98no-op%E7%9A%84%E8%B0%83%E8%89%B2.md)
