@@ -1,6 +1,6 @@
 * [首页](/README.md)
 
-## 草稿目录（123篇）
+## 草稿目录（124篇）
 
 ### 口播稿 · HyperFrames 视频教程
 
@@ -98,6 +98,7 @@
 * ["usql 通用数据库命令行工具：安装与使用教程"](drafts/CLI%E5%B7%A5%E5%85%B7/2026%E5%B9%B410%E6%9C%8815%E6%97%A5-usql%E9%80%9A%E7%94%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7.md)
 * ["文颜 CLI 使用指南：在命令行把 Markdown 排进公众号草稿箱"](drafts/CLI%E5%B7%A5%E5%85%B7/2026%E5%B9%B410%E6%9C%8816%E6%97%A5-%E6%96%87%E9%A2%9CCLI%E5%85%AC%E4%BC%97%E5%8F%B7%E6%8E%92%E7%89%88%E5%8F%91%E5%B8%83%E6%95%99%E7%A8%8B.md)
 * [克隆音色念完 3601 字楞严咒：一套可复用的 TTS 长音频工艺](drafts/CLI%E5%B7%A5%E5%85%B7/2026%E5%B9%B410%E6%9C%8825%E6%97%A5-%E5%85%8B%E9%9A%86%E9%9F%B3%E8%89%B2TTS%E9%95%BF%E9%9F%B3%E9%A2%91%E5%B7%A5%E8%89%BA.md)
+* [拆解 Matt Pocock 的 Course Video Manager：一个人的课程视频工厂](drafts/CLI%E5%B7%A5%E5%85%B7/2026%E5%B9%B410%E6%9C%8828%E6%97%A5-cvm%E8%AF%BE%E7%A8%8B%E8%A7%86%E9%A2%91%E7%AE%A1%E7%90%86%E5%99%A8%E6%8B%86%E8%A7%A3.md)
 
 ### 英语启蒙与其他草稿
 
